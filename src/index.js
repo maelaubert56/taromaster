@@ -11,6 +11,7 @@ import {
 
 import Home from "./pages/Home/Home.js";
 import MenuPartie from "./pages/MenuPartie/MenuPartie.js";
+import Partie from "./pages/Partie/Partie.js";
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,14 @@ const router = createBrowserRouter([
     {
         path: "/Parties",
         element: <MenuPartie/>,
+    },
+    {
+        path: "/Partie",
+        element: <Partie/>,
+    },
+    {
+        path: "/Partie/:id",
+        element: <Partie/>,
     }
 ]);
 

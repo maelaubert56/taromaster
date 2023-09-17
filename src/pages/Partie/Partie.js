@@ -1,8 +1,10 @@
-import Card from './Card.js';
-import './MenuPartie.css';
+import './Partie.css';
+import Footer from '../Footer.js';
 import {useState} from "react";
+import {useParams} from "react-router-dom";
 
-function MenuPartie() {
+function Partie() {
+    let {id} = useParams();
 
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
@@ -26,7 +28,7 @@ function MenuPartie() {
         const distance = touchStart - touchEnd
         const isRightSwipe = distance < -minSwipeDistance
         if (isRightSwipe) {
-            window.location.href = '/'
+            window.location.href = '/Parties'
         }
     }
 
@@ -122,24 +124,17 @@ function MenuPartie() {
     ];
 
     return (
-
-        <div className='cards-area' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-            {parties.map((partie, index) => (
-                <Card
-                    key={index}
-                    id={partie.id}
-                    nomPartie={partie.nomPartie}
-                    nbJoueurs={partie.nbJoueurs}
-                    nbDonne={partie.nbDonne}
-                    date={partie.date}
-                    pictureFirst={partie.pictureFirst}
-                    pseudoFirst={partie.pseudoFirst}
-                    scoreFirst={partie.scoreFirst}
-                />
-            ))}
-            <div className='bottom-gradient'></div>
+        <div className='root_partie'>
+            <div className='partie' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+                <img src={`/bannerPictures/${parties[id].bannerGame}`} alt="partie de tarot"/>
+                <div className='partie-bottom'>
+                    <h1>{parties[id].nomPartie}</h1>
+                    <span>Débuté le {parties[id].date}</span>
+                </div>
+            </div>
+            <Footer/>
         </div>
     );
 }
 
-export default MenuPartie
+export default Partie;

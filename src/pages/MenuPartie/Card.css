@@ -12,6 +12,8 @@
     font-family: K2D, serif;
     font-weight: 400;
     transition: 0.3s;
+    text-decoration: none;
+    color: #000;
 }
 
 .card:active{

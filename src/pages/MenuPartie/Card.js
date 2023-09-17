@@ -1,6 +1,6 @@
 import './Card.css'
 import {useEffect} from "react";
-function Card(props){
+function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseudoFirst, nbJoueurs}){
 
     useEffect(() => {
         var div = document.querySelector('.corner-color-div span');
@@ -13,37 +13,37 @@ function Card(props){
     }, []);
 
     return(
-        <div className='card'>
+        <a href={`/partie/${id}`} className='card'>
             <div className='top-card'>
                 <div className='top-left-card'>
                     <span>Donne</span>
-                    <span className='value'>{props.nbDonne}</span>
+                    <span className='value'>{nbDonne}</span>
                 </div>
                 <div className='top-middle-card'>
                     <div className='corner-left'></div>
-                    <div className='corner-color-div'><span>{props.nomPartie}</span></div>
+                    <div className='corner-color-div'><span>{nomPartie}</span></div>
                     <div className='corner-right'></div>
                 </div>
                 <div className='top-right-card'>
                     <span>Joueurs</span>
-                    <span className='value'>{props.nbJoueurs}</span>
+                    <span className='value'>{nbJoueurs}</span>
                 </div>
             </div>
             <div className='middle-card'>
                 <span>1er</span>
                 <div>
-                    <img src={`/profilePictures/${props.pictureFirst}`} alt="profile"/>
-                    <span>{props.pseudoFirst}</span>
+                    <img src={`/profilePictures/${pictureFirst}`} alt="profile"/>
+                    <span>{pseudoFirst}</span>
                 </div>
                 <span className='score'>
-                    {props.scoreFirst}
+                    {scoreFirst}
                     <span>point</span>
                 </span>
             </div>
             <div className='bottom-card'>
-                <i>derniere donne le {props.date}</i>
+                <i>derniere donne le {date}</i>
             </div>
-        </div>
+        </a>
 
     );
 
