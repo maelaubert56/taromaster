@@ -12,6 +12,7 @@ import {
 import Home from "./pages/Home/Home.js";
 import MenuPartie from "./pages/MenuPartie/MenuPartie.js";
 import Partie from "./pages/Partie/Partie.js";
+import Account from "./pages/Account/Account.js";
 
 
 const router = createBrowserRouter([
@@ -20,17 +21,22 @@ const router = createBrowserRouter([
         element: <Home/>,
     },
     {
-        path: "/Parties",
+        path: "/parties",
         element: <MenuPartie/>,
     },
     {
-        path: "/Partie",
+        path: "/partie",
         element: <Partie/>,
     },
     {
-        path: "/Partie/:id",
+        path: "/partie/:id",
         element: <Partie/>,
+    },{
+        path: "/account",
+        element: <Account/>,
+
     }
+
 ]);
 
 const root = ReactDOM.createRoot(
