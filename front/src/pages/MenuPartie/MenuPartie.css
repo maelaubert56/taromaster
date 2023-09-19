@@ -20,3 +20,27 @@
     height: 130px;
     background: linear-gradient(180deg, rgba(38, 70, 83, 0.00) 0%, rgba(38, 70, 83, 0.66) 41.67%, #264653 100%);
 }
+
+.add-game{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    width: 60px;
+    height: 60px;
+    background:#F4A261;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.add-game img{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}
+
+
+
+

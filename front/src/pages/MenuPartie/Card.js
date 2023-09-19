@@ -3,9 +3,9 @@ import {useEffect} from "react";
 function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseudoFirst, nbJoueurs}){
 
     useEffect(() => {
-        var div = document.querySelector('.corner-color-div span');
+        let div = document.querySelector('.corner-color-div span');
         /* if the string is more than 10 characters, we cut it */
-        var nbCharac = div.innerHTML.length;
+        let nbCharac = div.innerHTML.length;
         if(nbCharac > 15){
             // only let 10 characters and add '...' at the end
             div.innerHTML = div.innerHTML.substring(0, 10) + '...';
@@ -41,7 +41,7 @@ function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseu
                 </span>
             </div>
             <div className='bottom-card'>
-                <i>derniere donne le {date}</i>
+                <i>dernière donne le {date}</i>
             </div>
         </a>
 
