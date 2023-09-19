@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "linux-arm64-openssl-1.1.x", "darwin-arm64", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+    idUser Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    username String @unique
+    password String
+    firstName String
+    lastName String
+    avatar Int
+
+    playerInGames PlayerInGame[]
+
+}
+
+model Parties {
+    idPartie Int @id @default(autoincrement())
+    name String
+    createdAt DateTime @default(now())
+    banner Int
+
+    donnes Donnes[]
+    playerInGames PlayerInGame[]
+
+}
+
+model Donnes {
+    idDonne Int @id @default(autoincrement())
+    idPartie Int
+    idPreneur Int
+    idChoisi Int
+    nbPoints Int
+    isWin Boolean
+
+    partie Parties @relation(fields: [idPartie], references: [idPartie])
+
+}
+
+model PlayerInGame {
+    idPartie Int
+    idJoueur Int
+    points Int
+
+    @@unique([idJoueur, idPartie])
+
+    joueur Users @relation(fields: [idJoueur], references: [idUser])
+    partie Parties @relation(fields: [idPartie], references: [idPartie])
+
+}

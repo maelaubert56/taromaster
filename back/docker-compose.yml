@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=username
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=taromaster
+    ports:
+      - 8000:5432
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
