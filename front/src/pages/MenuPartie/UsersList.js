@@ -22,7 +22,7 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
 
     /* if the user clicks outside the popup, the popup is closed */
     const handleClickOutside = (e) => {
-        if (e.target.className === 'users-list') {
+        if (e.target.className === 'users-list'){
             setUsersListDiplayed(false)
         }
     }
@@ -58,7 +58,7 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
                             </div>
                         )
                     }
-                   
+
                 })}
             </div>
         </div>

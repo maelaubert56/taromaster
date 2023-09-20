@@ -13,6 +13,7 @@ import Home from "./pages/Home/Home.js";
 import MenuPartie from "./pages/MenuPartie/MenuPartie.js";
 import Partie from "./pages/Partie/Partie.js";
 import Account from "./pages/Account/Account.js";
+import Rules from "./pages/Rules/Rules.js";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     },{
         path: "/account",
         element: <Account/>,
+    },
+    {
+        path: "/rules",
+        element: <Rules/>
     }
 
 ]);

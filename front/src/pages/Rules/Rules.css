@@ -1,0 +1,55 @@
+.backarrow{
+  fill: #F4A261;
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.rules {
+  padding:0 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #264653;
+  gap: 50px;
+}
+
+.rules h1 {
+  margin: 0;
+  margin-top: 80px;
+  font-family: K2D, serif;
+  font-size: 50px;
+  color: white;
+}
+
+.rules-content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rules-content h2 {
+  font-family: K2D, serif;
+  font-size: 30px;
+  color: white;
+  margin: 0;
+}
+
+.rules-content p {
+  align-self: flex-start;
+  font-family: K2D, serif;
+  font-size: 22px;
+  color: white;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+

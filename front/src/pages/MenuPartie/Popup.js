@@ -34,7 +34,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
         watch,
         formState: { errors },
     } = useForm()
-    
+
     const onSubmit = async (data) => {
         const {gameName} = data
 

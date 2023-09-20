@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png'
 
 function Logo() {
     return (
-        <div className='logo'>
+        <div className='home_logo'>
             <img src={logo} alt='taromètre logo'/>
         </div>
     )

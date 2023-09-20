@@ -1,10 +1,101 @@
-.pp{
-    width: 50px;
-    height: auto;
+.backarrow{
+    fill: #F4A261;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
 }
 
-.ppSelected {
-    border: 2px solid green;
-    width: 50px;
+.account_page{
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-around;
+    background: #264653;
+}
+
+.account_logo{
+    margin:0;
+    padding:0;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.account_page form{
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.account_page input{
+    text-decoration: none;
+    width: 70%;
+    padding: 15px;
+    border-radius: 15px;
+    background: #D9D9D9;
+    color: #000;
+    font-family: K2D, serif;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    box-shadow: -3px 3px 0 0 rgba(159,159,159,1);
+    margin-bottom: 20px;
+    border:none;
+    /* text should be at left */
+    text-align: left;
+}
+
+.account_page input[type="submit"]{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.account_page p{
+    font-family: K2D, serif;
+    font-size: 22px;
+    color:white;
+    margin:0;
+    padding:0;
+}
+
+.change_type,.deconnexion{
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.account_page .pp_list{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.account_page .pp{
+    width: 80px;
     height: auto;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.account_page .ppSelected {
+    animation: spin 4s linear infinite;
+    width: 80px;
+    height: auto;
+    transition: 0.3s;
+    scale: 1.1;
 }

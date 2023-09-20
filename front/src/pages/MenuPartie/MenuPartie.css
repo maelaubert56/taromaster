@@ -1,7 +1,16 @@
+.backarrow{
+    fill: #F4A261;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+}
+
 .cards-area{
     width: 100%;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    min-height: 100%;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -10,18 +19,26 @@
     background: #264653;
 }
 
+.cards-area>a:first-of-type{
+    margin-top: 80px;
+}
+
+.cards-area>a:last-of-type{
+    margin-bottom: 80px;
+}
+
 .bottom-gradient {
     bottom: 0;
     /* always on bottom even if ther is a scroll */
     position: fixed;
-
-
+    z-index: 1;
     width: 100%;
     height: 130px;
     background: linear-gradient(180deg, rgba(38, 70, 83, 0.00) 0%, rgba(38, 70, 83, 0.66) 41.67%, #264653 100%);
 }
 
 .add-game{
+    z-index: 2;
     position: fixed;
     bottom: 0;
     right: 0;

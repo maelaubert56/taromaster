@@ -1,4 +1,4 @@
-.logo{
+.home_logo{
     margin-top: 80px;
     width: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.logo img{
+.home_logo img{
     width:70%;
     max-width: 300px;
 }
