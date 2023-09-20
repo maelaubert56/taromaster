@@ -1,7 +1,7 @@
 import plus_full_icon from "../../assets/plus_full.svg";
 import './Popup.css'
 import UsersList from "./UsersList.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
@@ -11,6 +11,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
     const user = JSON.parse(sessionStorage.getItem("session"))
     const [players, setPlayers] = useState(playersList ?? [user])
     const [isUsersListDisplayed, setUsersListDiplayed] = useState(false)
+    const [toDelete, setToDelete] = useState([])
 
 
     /* if the user clicks outside the popup, the popup is closed */
@@ -18,6 +19,13 @@ function Popup({setPopupDiplayed, playersList, partie}){
         if (e.target.className === 'game-popup') {
             setPopupDiplayed(false)
         }
+    }
+
+    const isPresent = (userId) => {
+        for(let i=0; i<playersList.length; i++){
+            if(playersList[i].idUser === userId) return true
+        }
+        return false
     }
 
     const {
@@ -48,14 +56,29 @@ function Popup({setPopupDiplayed, playersList, partie}){
                 name: gameName,
                 banner: 0
             })
+            for(let i=0; i<players.length; i++){
+                const obj = {
+                    id_joueur: players[i].idUser,
+                    id_partie: res.data.idPartie,
+                    points: 0
+                }
+                if(!isPresent(players[i].idUser))
+                    axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
+            }
+
+            for(let i=0; i<toDelete.length; i++){
+                axios.delete(`${process.env.REACT_APP_API}/playeringame/${res.data.idPartie}/${toDelete[i]}`)
+            }
+
         }
         setPopupDiplayed(false)
     }
 
 
     const deleteElement = (index) => {
-        setPlayers(players.filter((player, key) => key != index))
-    } 
+        setToDelete([...toDelete, players[index].idUser])
+        setPlayers(players.filter((player, key) => key !== index))
+    }
 
 
 
@@ -75,7 +98,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                         <div>
                             <label htmlFor='addPlayers'>Ajoutez des joueurs :</label>
                             <div className='players'>
-                                {players.map((player, index) => (
+                                {players && players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
                                         {player.idUser != user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
                                         <img src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
@@ -95,7 +118,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     </div>
                 </form>
             </div>
-            {isUsersListDisplayed && <UsersList setPlayers={setPlayers} players={players} setUsersListDiplayed={setUsersListDiplayed}/>}
+            {isUsersListDisplayed && <UsersList setPlayers={setPlayers} players={players} old={players} setUsersListDiplayed={setUsersListDiplayed}/>}
         </div>
     );
 }
