@@ -5,33 +5,15 @@ import {useState} from "react";
 import plus_icon from '../../assets/plus.svg';
 
 function MenuPartie() {
-
-    const [touchStart, setTouchStart] = useState(null)
-    const [touchEnd, setTouchEnd] = useState(null)
     const [isPopupDisplayed, setPopupDiplayed] = useState(false)
 
-    // the required distance between touchStart and touchEnd to be detected as a swipe
-    const minSwipeDistance = 70
-
-    const onTouchStart = (e) => {
-        setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
-        setTouchStart(e.targetTouches[0].clientX)
+    /* if popup opened, the user can't scroll the body */
+    if (isPopupDisplayed) {
+        document.body.style.overflow = 'hidden'
+    }else{
+        document.body.style.overflow = 'unset'
     }
 
-    const onTouchMove = (e) =>{
-        setTouchEnd(e.targetTouches[0].clientX)
-        /* move the div according to the touchmove event */
-        /* it should go to the right if the touche is going to the right and vice versa */
-    }
-
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return
-        const distance = touchStart - touchEnd
-        const isRightSwipe = distance < -minSwipeDistance
-        if (isRightSwipe) {
-            window.location.href = '/'
-        }
-    }
 
     const parties = [
         {
@@ -126,7 +108,10 @@ function MenuPartie() {
 
     return (
 
-        <div className='cards-area' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <div className='cards-area'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="24" viewBox="0 0 33 24" fill="none" className='backarrow' onClick={() => window.location.href = '/'}>
+                <path d="M0.939339 10.9393C0.353554 11.5251 0.353554 12.4749 0.939339 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97918 12.6066 1.3934C12.0208 0.80761 11.0711 0.80761 10.4853 1.3934L0.939339 10.9393ZM33 10.5L2 10.5L2 13.5L33 13.5L33 10.5Z"/>
+            </svg>
             {parties.map((partie, index) => (
                 <Card
                     key={index}

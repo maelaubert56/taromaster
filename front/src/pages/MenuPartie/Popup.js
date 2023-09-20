@@ -12,7 +12,7 @@ function Popup({setPopupDiplayed}){
     /* if the user clicks outside the popup, the popup is closed */
     const handleClickOutside = (e) => {
         if (e.target.className === 'game-popup') {
-            setPopupDiplayed(false)
+            setPopupDiplayed(false);
         }
     }
 
@@ -40,18 +40,6 @@ function Popup({setPopupDiplayed}){
                                     <img src={plus_full_icon} alt="ajouter"/>
                                     <span>Ajouter</span>
                                 </div>
-                                <div className='add_player_card'>
-                                    <img src={plus_full_icon} alt="ajouter"/>
-                                    <span>Ajouter</span>
-                                </div>
-                                <div className='add_player_card'>
-                                    <img src={plus_full_icon} alt="ajouter"/>
-                                    <span>Ajouter</span>
-                                </div>
-                                <div className='add_player_card'>
-                                    <img src={plus_full_icon} alt="ajouter"/>
-                                    <span>Ajouter</span>
-                                </div>
                             </div>
 
                         </div>
@@ -62,7 +50,7 @@ function Popup({setPopupDiplayed}){
                     </div>
                 </form>
             </div>
-            {isUsersListDisplayed && <UsersList isUsersListDisplayed={setUsersListDiplayed}/>}
+            {isUsersListDisplayed && <UsersList setUsersListDiplayed={setUsersListDiplayed}/>}
         </div>
     );
 }
