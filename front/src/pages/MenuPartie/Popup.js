@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 
-function Popup({setPopupDiplayed}){
+function Popup({setPopupDiplayed, playersList, partie}){
 
-    const [players, setPlayers] = useState([])
+    const user = JSON.parse(sessionStorage.getItem("session"))
+    const [players, setPlayers] = useState(playersList ?? [user])
     const [isUsersListDisplayed, setUsersListDiplayed] = useState(false)
+
 
     /* if the user clicks outside the popup, the popup is closed */
     const handleClickOutside = (e) => {
@@ -27,20 +29,33 @@ function Popup({setPopupDiplayed}){
 
     const onSubmit = async (data) => {
         const {gameName} = data
-        const res = await axios.post(`${process.env.REACT_APP_API}/parties/create`, {
-            name: gameName,
-            banner: 0
-        })
-        for(let i=0; i<players.length; i++){
-            const obj = {
-                id_joueur: players[i].idUser,
-                id_partie: res.data.idPartie,
-                points: 0
+
+        if(!partie){
+            const res = await axios.post(`${process.env.REACT_APP_API}/parties/create`, {
+                name: gameName,
+                banner: 0
+            })
+            for(let i=0; i<players.length; i++){
+                const obj = {
+                    id_joueur: players[i].idUser,
+                    id_partie: res.data.idPartie,
+                    points: 0
+                }
+                axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
             }
-            axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
-            setPopupDiplayed(false)
+        }else{
+            const res = await axios.post(`${process.env.REACT_APP_API}/parties/update/${partie.idPartie}`, {
+                name: gameName,
+                banner: 0
+            })
         }
+        setPopupDiplayed(false)
     }
+
+
+    const deleteElement = (index) => {
+        setPlayers(players.filter((player, key) => key != index))
+    } 
 
 
 
@@ -52,16 +67,17 @@ function Popup({setPopupDiplayed}){
                     <img src={`/bannerPictures/gens_heureux_qui_jouent.png`} alt='banner'/>
                 </div>
                 <form className='game-popup-form' onSubmit={handleSubmit(onSubmit)}>
-                    <div className='game-popup-form-title'>Créer une partie</div>
+                    <div className='game-popup-form-title'>{partie ? "Modifier la partie" : "Créer une partie"}</div>
                     <div className='game-popup-form-input'>
                         <div className='gameName'>
-                            <input type='text' id='gameName' name='gameName' placeholder='Nom de la partie' {...register("gameName")} />
+                            <input type='text' id='gameName' name='gameName' placeholder='Nom de la partie' {...register("gameName")} defaultValue={partie ? partie.name : null} required />
                         </div>
                         <div>
                             <label htmlFor='addPlayers'>Ajoutez des joueurs :</label>
                             <div className='players'>
                                 {players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
+                                        {player.idUser != user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
                                         <img src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
                                         <span>{player.username}</span>
                                     </div>
@@ -71,11 +87,10 @@ function Popup({setPopupDiplayed}){
                                     <span>Ajouter</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className='button-area'>
-                        <button>Ajouter</button>
+                        <button>{partie ? "Enregistrer" : "Valider"}</button>
                         <span onClick={()=>setPopupDiplayed(false)}>Annuler</span>
                     </div>
                 </form>

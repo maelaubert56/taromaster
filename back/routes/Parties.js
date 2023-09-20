@@ -50,7 +50,11 @@ router.get("/:id_partie", async (req, res) => {
         },
         include:{
             donnes: true,
-            playerInGames: true
+            playerInGames: {
+                include:{
+                    joueur: true
+                }
+            }
         }
     })
 

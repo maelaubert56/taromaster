@@ -1,12 +1,36 @@
 import './Partie.css';
 import Footer from '../Footer.js';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios"
+import Popup from "../MenuPartie/Popup"
 
 function Partie() {
 
     let {id} = useParams();
+    const [partie, setPartie] = useState(null)
+    const [isOpen, setPopupDiplayed] = useState(false)
+    const [players, setPlayers] = useState(null)
+
+
+    useEffect(() => {
+        if(!partie){
+            axios.get(`${process.env.REACT_APP_API}/parties/${id}`).then(res => {
+                setPartie(res.data)
+            })
+        }
+        else{
+            axios.get(`${process.env.REACT_APP_API}/parties/${id}`).then(res => {
+                setPartie(res.data)
+            })
+            let arr = []
+            for(let i=0; i<partie.playerInGames.length; i++){
+                arr.push(partie.playerInGames[i].joueur)
+            }
+            setPlayers(arr)
+        }
+    }, [partie, isOpen])
+
     
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
@@ -34,119 +58,37 @@ function Partie() {
         }
     }
 
-    const parties = [
-        {
-            id: '1',
-            nomPartie: 'La Jungle test de texte long',
-            nbJoueurs: '5',
-            nbDonne: '3',
-            date: '15/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '145'
-        },
-        {
-            id: '2',
-            nomPartie: 'Partie 2',
-            nbJoueurs: '2',
-            nbDonne: '10',
-            date: '05/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '195'
-        },
-        {
-            id: '3',
-            nomPartie: 'Partie 3',
-            nbJoueurs: '4',
-            nbDonne: '5',
-            date: '05/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '65'
-        },
-        {
-            id: '4',
-            nomPartie: 'Partie 4',
-            nbJoueurs: '5',
-            nbDonne: '3',
-            date: '15/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '145'
-        },
-        {
-            id: '5',
-            nomPartie: 'Partie 5',
-            nbJoueurs: '2',
-            nbDonne: '10',
-            date: '05/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '195'
-        },
-        {
-            id: '6',
-            nomPartie: 'Partie 6',
-            nbJoueurs: '4',
-            nbDonne: '5',
-            date: '05/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '65'
-        },
-        {
-            id: '7',
-            nomPartie: 'Partie 7',
-            nbJoueurs: '5',
-            nbDonne: '3',
-            date: '15/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '145'
-        },
-        {
-            id: '8',
-            nomPartie: 'Partie 8',
-            nbJoueurs: '2',
-            nbDonne: '10',
-            date: '05/09/2023',
-            bannerGame: 'gens_heureux_qui_jouent.png',
-            pictureFirst: 'profile_picture_batman.png',
-            pseudoFirst: 'Batman',
-            scoreFirst: '195'
-        }
-    ];
-    let partie
-    /* search the partie with the id in the url */
-    /* if the id is not found, redirect to the parties page */
-    if (parties[id] === undefined) {
-        window.location.href = '/Parties'
-    }else{
-        for (let i = 0; i < parties.length; i++) {
-            if (parties[i].id === id) {
-                partie = parties[i]
-                break
-            }
-        }
-    }
 
     return (
         <div className='root_partie'>
-            <div className='partie' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-                <img src={`/bannerPictures/${partie.bannerGame}`} alt="partie de tarot"/>
+
+            {isOpen && players && <Popup setPopupDiplayed={setPopupDiplayed} playersList={players} partie={partie} />}
+
+            {partie && !isOpen && <div className='partie' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+                <img src="/edit.png" alt="Edit" style={{width: "30px"}} onClick={() => setPopupDiplayed(true)} />
+                <img src={`/bannerPictures/banner${partie.banner}.png`} alt="partie de tarot"/>
                 <div className='partie-bottom'>
-                    <h1>{partie.nomPartie}</h1>
-                    <span>Débuté le {partie.date}</span>
+                    <h1>{partie.name}</h1>
+                    <span>Débuté le {partie.createdAt}</span>
+                     
+                    <p>{partie.donnes.length} donnes</p>
+                    <p>{partie.playerInGames.length} joueurs</p>
+
+
+                    {partie.playerInGames.map((player, index) => (
+                        <div key={index}>
+                            <p>{player.joueur.username}</p>
+                            <p>{player.points}</p>
+                        </div>
+                    ))}
+
+                    <p>Ajouter une donne</p>
+
                 </div>
-            </div>
+
+            </div>}
+
+
             <Footer/>
         </div>
     );

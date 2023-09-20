@@ -1,6 +1,6 @@
 import './Card.css'
 import {useEffect} from "react";
-function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseudoFirst, nbJoueurs}){
+function Card({index, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseudoFirst, nbJoueurs}){
 
     useEffect(() => {
         let div = document.querySelector('.corner-color-div span');
@@ -13,7 +13,7 @@ function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseu
     }, []);
 
     return(
-        <a href={`/partie/${id}`} className='card' key={key}>
+        <a href={`/partie/${id}`} className='card' key={index}>
             <div className='top-card'>
                 <div className='top-left-card'>
                     <span>Donnes</span>
