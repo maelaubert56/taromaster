@@ -69,7 +69,7 @@ input[type="submit"]{
     padding:0;
 }
 
-.change_type{
+.change_type,.deconnexion{
     font-weight: 700;
     text-decoration: underline;
 }
