@@ -2,10 +2,12 @@ import './UsersList.css';
 import { useEffect, useState } from 'react';
 import axios from "axios"
 
-function UsersList({setUsersListDiplayed, setPlayers, players}){
+function UsersList({setUsersListDiplayed, setPlayers, players, old}){
+
 
     const [search, setSearch] = useState(null)
     const [result, setResult] = useState([])
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
@@ -33,6 +35,9 @@ function UsersList({setUsersListDiplayed, setPlayers, players}){
     const isPresent = (id) => {
         for(let i=0; i<players.length; i++){
             if(players[i].idUser === id) return true
+        }
+        for(let i=0; i<old.length; i++){
+            if(old[i].idUser === id) return true
         }
         return false
     }
