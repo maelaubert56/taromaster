@@ -67,6 +67,41 @@ router.get("/:username", async (req, res) => {
     const response = await prisma.users.findUnique({
         where:{
             username
+        },
+        include:{
+            playerInGames: {
+                include:{
+                    partie: {
+                        include:{
+                            donnes: true,
+                            playerInGames: {
+                                orderBy: {
+                                    points: "desc"
+                                },
+                                include:{
+                                    joueur: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+    return res.status(200).json(response)
+
+})
+
+router.get("/search/:username", async (req, res) => {
+
+    const {username} = req.params
+
+    const response = await prisma.users.findMany({
+        where:{
+            username: {
+                contains: username
+            }
         }
     })
 
