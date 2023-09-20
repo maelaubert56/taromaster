@@ -16,6 +16,8 @@
     color: #000;
 }
 
+
+
 .card:active{
     transform: scale(0.97);
 }

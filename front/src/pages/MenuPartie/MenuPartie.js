@@ -46,7 +46,8 @@ function MenuPartie() {
                     pseudoFirst={partie.partie.playerInGames.length > 0 ? partie.partie.playerInGames[0].joueur.username : "Aucun"}
                     scoreFirst={partie.partie.playerInGames.length > 0 ?  partie.partie.playerInGames[0].points : "0"}
                 />
-            ))}
+            ))
+            }
 
             <div className='bottom-gradient'></div>
             <div className='add-game' onClick={()=>setPopupDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>

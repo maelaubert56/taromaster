@@ -37,7 +37,7 @@ function Card({index, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, ps
                 </div>
                 <span className='score'>
                     {scoreFirst}
-                    <span>point</span>
+                    <span> point</span>
                 </span>
             </div>
             <div className='bottom-card'>

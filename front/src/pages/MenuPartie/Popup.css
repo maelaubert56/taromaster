@@ -4,6 +4,7 @@
 
 
 .game-popup{
+    z-index:2;
     animation: fadeOn 0.5s ease-out;
     display:flex;
     position: fixed;
