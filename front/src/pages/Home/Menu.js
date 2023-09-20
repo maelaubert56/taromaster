@@ -5,7 +5,7 @@ function Menu() {
         <div className='menu'>
             <ul>
                 <a href='/parties'><li>Parties</li></a>
-                <a><li>Classement</li></a>
+                <a href='/'><li>Classement</li></a>
             </ul>
         </div>
     )

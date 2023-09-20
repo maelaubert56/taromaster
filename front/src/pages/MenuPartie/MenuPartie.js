@@ -1,11 +1,14 @@
 import Card from './Card.js';
+import Popup from "./Popup";
 import './MenuPartie.css';
 import {useState} from "react";
+import plus_icon from '../../assets/plus.svg';
 
 function MenuPartie() {
 
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
+    const [isPopupDisplayed, setPopupDiplayed] = useState(false)
 
     // the required distance between touchStart and touchEnd to be detected as a swipe
     const minSwipeDistance = 70
@@ -137,7 +140,11 @@ function MenuPartie() {
                     scoreFirst={partie.scoreFirst}
                 />
             ))}
+
             <div className='bottom-gradient'></div>
+            <div className='add-game' onClick={()=>setPopupDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
+
+            {isPopupDisplayed && <Popup setPopupDiplayed={setPopupDiplayed}/>}
         </div>
     );
 }
