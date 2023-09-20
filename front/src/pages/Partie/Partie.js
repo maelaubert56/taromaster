@@ -29,7 +29,7 @@ function Partie() {
             }
             setPlayers(arr)
         }
-    }, [partie, isOpen])
+    }, [isOpen])
 
 
     return (
