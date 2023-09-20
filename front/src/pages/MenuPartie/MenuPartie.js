@@ -8,7 +8,7 @@ function MenuPartie() {
 
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
-    const [isDisplayed, setDiplayed] = useState(false)
+    const [isPopupDisplayed, setPopupDiplayed] = useState(false)
 
     // the required distance between touchStart and touchEnd to be detected as a swipe
     const minSwipeDistance = 70
@@ -142,9 +142,9 @@ function MenuPartie() {
             ))}
 
             <div className='bottom-gradient'></div>
-            <div className='add-game' onClick={()=>setDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
+            <div className='add-game' onClick={()=>setPopupDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
 
-            {isDisplayed && <Popup setDiplayed={setDiplayed}/>}
+            {isPopupDisplayed && <Popup setPopupDiplayed={setPopupDiplayed}/>}
         </div>
     );
 }
