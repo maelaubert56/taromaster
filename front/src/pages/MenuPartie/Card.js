@@ -13,10 +13,10 @@ function Card({key, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseu
     }, []);
 
     return(
-        <a href={`/partie/${id}`} className='card'>
+        <a href={`/partie/${id}`} className='card' key={key}>
             <div className='top-card'>
                 <div className='top-left-card'>
-                    <span>Donne</span>
+                    <span>Donnes</span>
                     <span className='value'>{nbDonne}</span>
                 </div>
                 <div className='top-middle-card'>

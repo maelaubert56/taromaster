@@ -2,10 +2,12 @@ import './Partie.css';
 import Footer from '../Footer.js';
 import {useState} from "react";
 import {useParams} from "react-router-dom";
+import axios from "axios"
 
 function Partie() {
-    let {id} = useParams();
 
+    let {id} = useParams();
+    
     const [touchStart, setTouchStart] = useState(null)
     const [touchEnd, setTouchEnd] = useState(null)
 
