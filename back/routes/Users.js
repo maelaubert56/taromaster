@@ -21,7 +21,6 @@ const userExist = async (username) => {
 
 router.post("/create", async(req, res) => {
     const { firstName, lastName, username, password, avatar } = req.body
-
     if(await userExist(username)) return res.status(400).json("Ce nom d'utilisateur est déjà utilisé")
 
     const response = await prisma.users.create({
