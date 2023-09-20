@@ -1,0 +1,10 @@
+.pp{
+    width: 50px;
+    height: auto;
+}
+
+.ppSelected {
+    border: 2px solid green;
+    width: 50px;
+    height: auto;
+}
