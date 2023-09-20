@@ -51,8 +51,8 @@ function MenuPartie() {
         <div className='cards-area' onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
             {parties.length > 0 && parties.map((partie, index) => (
                 <Card
-                    key={index}
-                    id={partie.id}
+                    index={index}
+                    id={partie.idPartie}
                     nomPartie={partie.partie.name}
                     nbJoueurs={partie.partie.playerInGames.length}
                     nbDonne={partie.partie.donnes.length}

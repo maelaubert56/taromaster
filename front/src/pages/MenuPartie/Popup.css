@@ -130,6 +130,7 @@ label{
     justify-content:center;
     gap:10px;
     flex-wrap:wrap;
+    margin-top: 20px;
 
 }
 
@@ -144,7 +145,9 @@ label{
     align-items:center;
     justify-content:center;
     gap:5px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);}
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    position: relative;
+}
 
 .add_player_card img{
     width: 40px;
@@ -192,4 +195,12 @@ label{
 .button-area span{
     background: #E76F51;
     color: #fff;
+}
+
+.delete{
+    width: 10px;
+    height: auto;
+    position: absolute;
+    top: -20px;
+    right: -10px;
 }
