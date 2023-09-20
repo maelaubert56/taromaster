@@ -39,17 +39,16 @@ router.post("/create", async(req, res) => {
 router.post("/update/:old_username", async (req, res) => {
 
     const {old_username} = req.params
-    const {username, firstName, lastName, avatar} = req.body
+    const {firstName, lastName, avatar = 0} = req.body
 
 
-    if(await userExist(username)) return res.status(400).json("Ce nom d'utilisateur existe déjà")
+    // if(await userExist(username)) return res.status(400).json("Ce nom d'utilisateur existe déjà")
 
     const response = await prisma.users.update({
         where:{
             username: old_username
         },
         data:{
-            username,
             firstName,
             lastName,
             avatar

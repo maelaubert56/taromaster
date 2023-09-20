@@ -57,6 +57,15 @@ function Account() {
         })
     }
 
+    const onSubmitEdit = async (data) => {
+        const {firstName, lastName} = data
+        const res = await axios.post(`${process.env.REACT_APP_API}/users/update/${JSON.parse(sessionStorage.getItem("session")).username}`, {
+            firstName,
+            lastName
+        })
+        sessionStorage.setItem("session", JSON.stringify(res.data))
+    }
+
     return (
         <div className="account_page_root">
             {logged ?
@@ -65,14 +74,14 @@ function Account() {
                         <path d="M0.939339 10.9393C0.353554 11.5251 0.353554 12.4749 0.939339 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97918 12.6066 1.3934C12.0208 0.80761 11.0711 0.80761 10.4853 1.3934L0.939339 10.9393ZM33 10.5L2 10.5L2 13.5L33 13.5L33 10.5Z"/>
                     </svg>
                     <img src={logo} alt="logo" className='account_logo'/>
-                    <form onSubmit={handleSubmit(onSubmitRegister)}>
+                    <form onSubmit={handleSubmit(onSubmitEdit)} className='form_register'>
                         <div className="pp_list">
                             <img src={`/profilePictures/pp${JSON.parse(sessionStorage.getItem("session")).avatar}.png`} alt="Profile Pic" className="ppSelected"/>
                         </div>
-                        {/*TODO: afficher username*/}
+
                         <p className='username_form'>{JSON.parse(sessionStorage.getItem("session")).username}</p>
-                        <input type="text" {...register("firstName")} placeholder="Prénom"/>
-                        <input type="text" {...register("lastName")} placeholder="Nom"/>
+                        <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(sessionStorage.getItem("session")).firstName} />
+                        <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(sessionStorage.getItem("session")).lastName} />
 
                         <input type="submit" value="Appliquer" />
                         <p onClick={deconnexion} className='deconnexion'>Se déconnecter</p>
