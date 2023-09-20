@@ -26,6 +26,7 @@ footer li{
     transition: 0.3s;
 }
 
+
 footer li:active{
     transform: scale(0.95);
 }
