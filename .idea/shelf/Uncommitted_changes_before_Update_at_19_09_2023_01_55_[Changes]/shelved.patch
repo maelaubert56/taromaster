@@ -1,0 +1,28 @@
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision e1688e1fc658385cc475dc9b09a5832774c7d2ae)
++++ /dev/null	(revision e1688e1fc658385cc475dc9b09a5832774c7d2ae)
+@@ -1,5 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision e1688e1fc658385cc475dc9b09a5832774c7d2ae)
++++ /dev/null	(revision e1688e1fc658385cc475dc9b09a5832774c7d2ae)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/tarot_tracker.iml" filepath="$PROJECT_DIR$/.idea/tarot_tracker.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
