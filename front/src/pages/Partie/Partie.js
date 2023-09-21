@@ -22,12 +22,12 @@ function Partie() {
         else{
             axios.get(`${process.env.REACT_APP_API}/parties/${id}`).then(res => {
                 setPartie(res.data)
+                let arr = []
+                for(let i=0; i<res.data.playerInGames.length; i++){
+                    arr.push(res.data.playerInGames[i].joueur)
+                }
+                setPlayers(arr)
             })
-            let arr = []
-            for(let i=0; i<partie.playerInGames.length; i++){
-                arr.push(partie.playerInGames[i].joueur)
-            }
-            setPlayers(arr)
         }
     }, [isOpen])
 

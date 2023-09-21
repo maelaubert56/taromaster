@@ -49,7 +49,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     id_partie: res.data.idPartie,
                     points: 0
                 }
-                axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
+                await axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
             }
         }else{
             const res = await axios.post(`${process.env.REACT_APP_API}/parties/update/${partie.idPartie}`, {
@@ -63,12 +63,14 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     points: 0
                 }
                 if(!isPresent(players[i].idUser))
-                    axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
+                    await axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
             }
 
             for(let i=0; i<toDelete.length; i++){
-                axios.delete(`${process.env.REACT_APP_API}/playeringame/${res.data.idPartie}/${toDelete[i]}`)
+                await axios.delete(`${process.env.REACT_APP_API}/playeringame/${res.data.idPartie}/${toDelete[i]}`)
             }
+
+
 
         }
         setPopupDiplayed(false)
@@ -100,7 +102,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                             <div className='players'>
                                 {players && players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
-                                        {player.idUser != user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
+                                        {player.idUser !== user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
                                         <img src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
                                         <span>{player.username}</span>
                                     </div>
@@ -118,7 +120,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     </div>
                 </form>
             </div>
-            {isUsersListDisplayed && <UsersList setPlayers={setPlayers} players={players} old={players} setUsersListDiplayed={setUsersListDiplayed}/>}
+            {isUsersListDisplayed && <UsersList setPlayers={setPlayers} players={players} old={players} setUsersListDiplayed={setUsersListDiplayed} />}
         </div>
     );
 }
