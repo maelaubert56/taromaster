@@ -24,6 +24,64 @@ function AddDonne({setAddDonneDiplayed}){
                 <form className='game-popup-form'>
                     <div className='game-popup-form-title'>Nouvelle donne</div>
                     <div className='game-popup-form-input'>
+                        <div className='preneur'>
+                            <label htmlFor="preneur">Preneur : </label>
+                            <input type="radio" id="preneur" name="preneur" value="preneur" />
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                            <div className='add_player_card'>
+                                <img src={`/profilePictures/pp0.png`} alt="ajouter"/>
+                                <span>test</span>
+                            </div>
+                        </div>
+                        <div className='choisis'>
+                            <label htmlFor="choisis">Choisis : </label>
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                            <input type="radio" id="choisis" name="choisis" value="choisis" />
+                        </div>
+                        <div className='contrat'>
+                            <label htmlFor="contrat">Contrat :</label>
+                            <input type="radio" id="contrat" name="contrat" value="Petite" />
+                            <input type="radio" id="contrat" name="contrat" value="Garde" />
+                            <input type="radio" id="contrat" name="contrat" value="Garde sans" />
+                            <input type="radio" id="contrat" name="contrat" value="Garde contre" />
+                        </div>
+                        <div className='points'>
+                            <label htmlFor="points">Nombre de point du vainqueur :</label>
+                            <input type="number" id="points" name="points" min="0" max="91" />
+                        </div>
+                        <div className='contrat_valide'>
+                            <label htmlFor="contrat_valide">Contrat validé ?</label>
+                            <input type="radio" id="contrat_valide" name="contrat_valide" value="oui" />
+                            <input type="radio" id="contrat_valide" name="contrat_valide" value="non" />
+                        </div>
+
+
+
+
+
                         <div>
                             {/*<div className='players'>
                                 {players && players.map((player, index) => (
