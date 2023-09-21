@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 function MenuPartie() {
     const [isPopupDisplayed, setPopupDiplayed] = useState(false)
     const [parties, setParties] = useState([])
-    const [session, setSession] = useState(sessionStorage.getItem("session"))
+    const [session, setSession] = useState(JSON.parse(sessionStorage.getItem("session")))
 
 
     useEffect(() => {
