@@ -81,4 +81,23 @@ router.delete("/:id_partie/:id_player", async (req, res) => {
 })
 
 
+router.get("/:id_partie/:id_player", async (req, res) => {
+    const {id_partie, id_player} = req.params
+
+    const response = await prisma.playerInGame.findUnique({
+        where:{
+            idJoueur_idPartie: {
+                idJoueur: parseInt(id_player),
+                idPartie: parseInt(id_partie)
+            }
+        },
+        include:{
+            joueur: true
+        }
+    })
+
+    return res.status(200).json(response)
+
+})
+
 module.exports = router

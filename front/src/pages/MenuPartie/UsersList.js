@@ -27,7 +27,7 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
         }
     }
 
-    const click = (profile) => {
+    const click = async (profile) => {
         setPlayers([...players, profile])
         setUsersListDiplayed(false)
     }
@@ -58,7 +58,6 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
                             </div>
                         )
                     }
-
                 })}
             </div>
         </div>
