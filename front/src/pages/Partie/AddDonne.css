@@ -180,3 +180,43 @@ label{
     top: -20px;
     right: -10px;
 }
+
+
+.players_cards_add_donne{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.game-popup-form-input input[type='radio']{
+    display:none;
+}
+
+.game-popup-form-input input[type='radio']:checked + label>div{
+    border: 2px solid #28e047;
+}
+
+.contrat label{
+    width: 70%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 10px 0;
+    border-radius: 20px;
+    border: 2px solid #264653;
+    cursor: pointer;
+    text-align: center;
+}
+
+.contrat input[type='radio']:checked{
+    border : 2px solid #28e047;
+}
+
+
+
+
