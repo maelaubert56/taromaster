@@ -21,21 +21,24 @@
     width: 100%;
     border-radius: 15px 15px 0 0 ;
     opacity: 0.7;
-
 }
 
 .partie-bottom{
+
     width: 100%;
-    height: 60vh;
+    height: 72%;
     background: #D9D9D9;
     border-radius: 15px;
     margin-top:-45px;
     z-index: 1;
-
     font-family: K2D, serif;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .partie-bottom h1{
@@ -44,6 +47,119 @@
     color:#264653;
     text-align: center;
     margin:0;
-
+    margin-top:15px;
 }
 
+.partie-bottom-infos{
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.partie-bottom-infos>span{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.data_partie{
+    font-size: 30px;
+}
+
+
+
+
+.classement{
+    width: 80%;
+    background: #D9D9D9;
+    border-radius: 15px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.classement>div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000000;
+    padding: 5px;
+}
+
+.classement>div:first-child{
+    border-top: 1px solid #000000;
+}
+
+.classement>div p{
+    font-size: 20px;
+    font-weight: 400;
+    color:#264653;
+    margin:0;
+}
+
+.classement>div>div p{
+    font-size: 23px;
+}
+
+.classement>div>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:5px;
+}
+
+
+
+.n-eme{
+    font-size: 15px;
+    font-style: italic;
+}
+
+.classement img {
+    width: 30px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.date_partie{
+    margin-top:5px;
+    font-size: 12px;
+    font-style: italic;
+    color: #525252;
+}
+
+
+.add-donne,.edit_partie{
+    z-index: 2;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    margin: 20px;
+    width: 60px;
+    height: 60px;
+    background:#F4A261;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.edit_partie{
+    bottom: 40px;
+    left: 20px;
+}
+
+.add-donne img,.edit_partie img{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+}

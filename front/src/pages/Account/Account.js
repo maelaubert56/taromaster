@@ -78,11 +78,15 @@ function Account() {
                         <div className="pp_list">
                             <img src={`/profilePictures/pp${JSON.parse(sessionStorage.getItem("session")).avatar}.png`} alt="Profile Pic" className="ppSelected"/>
                         </div>
-                        {/*TODO: afficher username*/}
+
+                        <p className='username_form'>{JSON.parse(sessionStorage.getItem("session")).username}</p>
                         <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(sessionStorage.getItem("session")).firstName} />
                         <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(sessionStorage.getItem("session")).lastName} />
+
                         <input type="submit" value="Appliquer" />
                         <p onClick={deconnexion} className='deconnexion'>Se déconnecter</p>
+                        {/* when click on delete account, console.log("delete account") */}
+                        <p onClick={() => console.log("delete account")} className='delete_account'>Supprimer mon compte</p>
                     </form>
                 </div>
             :
