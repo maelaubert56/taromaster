@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios"
 import Popup from "../MenuPartie/Popup"
+import AddDonne from "./AddDonne"
 import plus_icon from "../../assets/plus.svg";
 
 function Partie() {
@@ -11,6 +12,7 @@ function Partie() {
     let {id} = useParams();
     const [partie, setPartie] = useState(null)
     const [isOpen, setPopupDiplayed] = useState(false)
+    const [addDonneDisplayed, setAddDonneDiplayed] = useState(false)
     const [players, setPlayers] = useState(null)
 
 
@@ -63,12 +65,15 @@ function Partie() {
                     <span className='date_partie'>Débuté le {partie.createdAt.split("T")[0]} à {partie.createdAt.split("T")[1].split(".")[0][0]+partie.createdAt.split("T")[1].split(".")[0][1]}:{partie.createdAt.split("T")[1].split(".")[0][3]+partie.createdAt.split("T")[1].split(".")[0][4]}</span>
                     <div className='stats'></div>
 
-                    <div className='add-donne' onClick={()=>console.log('apparition popup')}><img src={plus_icon} alt="ajouter"/></div>
+                    <div className='add-donne' onClick={()=>setAddDonneDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
 
                     <div className='edit_partie' onClick={() => setPopupDiplayed(true)}><img src="/edit.png" alt="Edit" style={{width: "30px"}}  /></div>
                 </div>
-
             </div>}
+            {addDonneDisplayed &&
+                <AddDonne setAddDonneDiplayed={setAddDonneDiplayed} partie={partie} />
+            }
+
         </div>
     );
 }
