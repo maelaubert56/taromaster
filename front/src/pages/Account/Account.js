@@ -12,7 +12,7 @@ function Account() {
 
     const [login, setLogin] = useState(true)
     const [error, setError] = useState(null)
-    const [avatar, setAvatar] = useState(0)
+    const [avatar, setAvatar] = useState(JSON.parse(sessionStorage.getItem("session")).avatar)
     const [logged, setLogged] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -61,7 +61,8 @@ function Account() {
         const {firstName, lastName} = data
         const res = await axios.post(`${process.env.REACT_APP_API}/users/update/${JSON.parse(sessionStorage.getItem("session")).username}`, {
             firstName,
-            lastName
+            lastName,
+            avatar
         })
         sessionStorage.setItem("session", JSON.stringify(res.data))
     }
@@ -76,17 +77,16 @@ function Account() {
                     <img src={logo} alt="logo" className='account_logo'/>
                     <form onSubmit={handleSubmit(onSubmitEdit)} className='form_register'>
                         <div className="pp_list">
-                            <img src={`/profilePictures/pp${JSON.parse(sessionStorage.getItem("session")).avatar}.png`} alt="Profile Pic" className="ppSelected"/>
+                            <ChooseAvatar avatar={avatar} setAvatar={setAvatar} />
                         </div>
-
-                        <p className='username_form'>{JSON.parse(sessionStorage.getItem("session")).username}</p>
+                        <p className='username_form'><u>Username</u> : <i>{JSON.parse(sessionStorage.getItem("session")).username}</i></p>
                         <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(sessionStorage.getItem("session")).firstName} />
                         <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(sessionStorage.getItem("session")).lastName} />
 
                         <input type="submit" value="Appliquer" />
                         <p onClick={deconnexion} className='deconnexion'>Se déconnecter</p>
                         {/* when click on delete account, console.log("delete account") */}
-                        <p onClick={() => console.log("delete account")} className='delete_account'>Supprimer mon compte</p>
+                        {/* <p onClick={() => console.log("delete account")} className='delete_account'>Supprimer mon compte</p> */}
                     </form>
                 </div>
             :
@@ -108,8 +108,8 @@ function Account() {
                     <form onSubmit={handleSubmit(onSubmitRegister)} className='form_register'>
                         <ChooseAvatar avatar={avatar} setAvatar={setAvatar} />
                         <input type="text" {...register("username")} placeholder="Nom d'utilisateur" />
-                        <input type="text" {...register("firstName")} placeholder="Prénom" />
                         <input type="text" {...register("lastName")} placeholder="Nom" />
+                        <input type="text" {...register("firstName")} placeholder="Prénom" />
                         <input type="password" {...register("password")} placeholder="Mot de passe" />
                         <input type="submit" value="Se connecter" />
                         <p>Déja inscrit ?</p>

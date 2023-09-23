@@ -153,6 +153,12 @@ label{
     position: relative;
 }
 
+.pp{
+    border-radius: 50%;
+    width: 55px !important;
+    height: 55px !important;
+}
+
 .add_player_card img{
     width: 40px;
     height: 40px;
@@ -166,6 +172,14 @@ label{
     font-weight: 400;
     line-height: normal;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .button-area{

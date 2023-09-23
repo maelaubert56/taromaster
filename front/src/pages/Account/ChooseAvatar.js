@@ -9,7 +9,7 @@ const ChooseAvatar = ({avatar, setAvatar}) => {
                 <img key={index} src={`/profilePictures/pp${index}.png`} alt="Profile Pic" className={index === avatar ? "ppSelected" : "pp"} onClick={() => setAvatar(index)} />
             ))}
             <span className='arrow_pp_list'>
-                >
+                {">"}
             </span>
         </div>
     )

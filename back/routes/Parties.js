@@ -53,6 +53,9 @@ router.get("/:id_partie", async (req, res) => {
             playerInGames: {
                 include:{
                     joueur: true
+                },
+                orderBy:{
+                    points: "desc"
                 }
             }
         }

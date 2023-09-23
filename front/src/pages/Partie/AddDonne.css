@@ -31,6 +31,7 @@
     align-items:center;
     justify-content: flex-start;
     gap:20px;
+    padding-top: 20px;
 }
 
 @keyframes slideFromBottom{
@@ -150,6 +151,7 @@ label{
     align-items:center;
     justify-content:flex-end;
     gap:15px;
+    padding-bottom: 20px;
 }
 
 .button-area span, .button-area button{
@@ -191,32 +193,50 @@ label{
     flex-wrap: wrap;
 }
 
-.game-popup-form-input input[type='radio']{
-    display:none;
+.players_cards_add_donne > div {
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.game-popup-form-input input[type='radio']:checked + label>div{
-    border: 2px solid #28e047;
+.players_cards_add_donne > div > img {
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
 }
 
-.contrat label{
-    width: 70%;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding: 10px 0;
-    border-radius: 20px;
-    border: 2px solid #264653;
-    cursor: pointer;
+.players_cards_add_donne > div > p {
     text-align: center;
-}
-
-.contrat input[type='radio']:checked{
-    border : 2px solid #28e047;
+    margin: 0;
 }
 
 
+.contrat{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contrat > p {
+    border: 2px solid #333;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.contrat_valide{
+    display: flex;
+    justify-content: space-between;
+}
+
+.contrat_valide > p {
+    border: 2px solid #333;
+    padding: 5px;
+    border-radius: 5px;
+}
 
 
+
+.points > input {
+    width: 40% !important;
+}

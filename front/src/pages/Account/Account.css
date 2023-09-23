@@ -87,7 +87,7 @@
 
 .account_page .pp_list{
     position:relative;
-    width: 100%;
+    width: 90%;
     height: 100px;
     display: flex;
     justify-content: flex-start;
@@ -97,12 +97,30 @@
     overflow-x: scroll;
 }
 
+
+.pp_list::-webkit-scrollbar{
+    display: none;
+}
+
 .account_page .pp{
     width: 80px;
     height: auto;
     opacity: 0.5;
     transition: 0.3s;
     border-radius: 50%;
+}
+
+.profilePic{
+    display: block;
+    margin: auto;
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 0;
+}
+
+.username_form{
+    margin-bottom: 20px !important;
 }
 
 .account_page .ppSelected {

@@ -103,7 +103,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                                 {players && players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
                                         {player.idUser !== user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
-                                        <img src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
+                                        <img className="pp" src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
                                         <span>{player.username}</span>
                                     </div>
                                 ))}

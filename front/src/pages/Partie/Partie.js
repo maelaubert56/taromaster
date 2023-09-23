@@ -32,7 +32,7 @@ function Partie() {
                 setPlayers(arr)
             })
         }
-    }, [isOpen])
+    }, [isOpen, addDonneDisplayed])
 
 
     return (

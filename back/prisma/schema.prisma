@@ -43,7 +43,7 @@ model Donnes {
     nbPoints Int
     isWin Boolean
 
-    partie Parties @relation(fields: [idPartie], references: [idPartie])
+    partie Parties @relation(fields: [idPartie], references: [idPartie], onDelete: Cascade)
 
 }
 
@@ -54,7 +54,7 @@ model PlayerInGame {
 
     @@unique([idJoueur, idPartie])
 
-    joueur Users @relation(fields: [idJoueur], references: [idUser])
-    partie Parties @relation(fields: [idPartie], references: [idPartie])
+    joueur Users @relation(fields: [idJoueur], references: [idUser], onDelete: Cascade)
+    partie Parties @relation(fields: [idPartie], references: [idPartie], onDelete: Cascade)
 
 }
