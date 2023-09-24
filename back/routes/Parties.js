@@ -23,7 +23,7 @@ router.post("/create", async (req, res) => {
 })
 
 router.post("/update/:id_partie", async (req, res) => {
-    const {name, banner} = req.body
+    const {name, banner, createdAt, nbDonnes} = req.body
     const {id_partie} = req.params
 
     const response = await prisma.parties.update({
@@ -32,7 +32,9 @@ router.post("/update/:id_partie", async (req, res) => {
         },
         data:{
             name,
-            banner
+            banner,
+            createdAt,
+            nbDonnes
         }
     })
 
@@ -49,7 +51,6 @@ router.get("/:id_partie", async (req, res) => {
             idPartie: parseInt(id_partie)
         },
         include:{
-            donnes: true,
             playerInGames: {
                 include:{
                     joueur: true

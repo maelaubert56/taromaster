@@ -1,3 +1,14 @@
+.aucune{
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    text-align: center;
+    font-size: 25px;
+}
+
 .backarrow{
     fill: #F4A261;
     width: 30px;

@@ -29,23 +29,12 @@ model Parties {
     name String
     createdAt DateTime @default(now())
     banner Int
+    nbDonnes Int @default(0)
 
-    donnes Donnes[]
     playerInGames PlayerInGame[]
 
 }
 
-model Donnes {
-    idDonne Int @id @default(autoincrement())
-    idPartie Int
-    idPreneur Int
-    idChoisi Int
-    nbPoints Int
-    isWin Boolean
-
-    partie Parties @relation(fields: [idPartie], references: [idPartie], onDelete: Cascade)
-
-}
 
 model PlayerInGame {
     idPartie Int

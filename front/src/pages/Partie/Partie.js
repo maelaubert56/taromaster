@@ -47,7 +47,7 @@ function Partie() {
                 <div className='partie-bottom'>
                     <h1>{partie.name}</h1>
                     <div className='partie-bottom-infos'>
-                        <span>Donnes<span className='data_partie'>{partie.donnes.length}</span></span>
+                        <span>Donnes<span className='data_partie'>{partie.nbDonnes}</span></span>
                         <span>Joueurs<span className='data_partie'>{partie.playerInGames.length}</span></span>
                     </div>
                     <div className='classement'>
@@ -62,7 +62,7 @@ function Partie() {
                             </div>
                         ))}
                     </div>
-                    <span className='date_partie'>Débuté le {partie.createdAt.split("T")[0]} à {partie.createdAt.split("T")[1].split(".")[0][0]+partie.createdAt.split("T")[1].split(".")[0][1]}:{partie.createdAt.split("T")[1].split(".")[0][3]+partie.createdAt.split("T")[1].split(".")[0][4]}</span>
+                    <span className='date_partie'>Dernière donne le {partie.createdAt.split("T")[0]} à {partie.createdAt.split("T")[1].split(".")[0][0]+partie.createdAt.split("T")[1].split(".")[0][1]}:{partie.createdAt.split("T")[1].split(".")[0][3]+partie.createdAt.split("T")[1].split(".")[0][4]}</span>
                     <div className='stats'></div>
 
                     <div className='add-donne' onClick={()=>setAddDonneDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>

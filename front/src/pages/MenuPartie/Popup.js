@@ -49,6 +49,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     id_partie: res.data.idPartie,
                     points: 0
                 }
+                console.log(obj)
                 await axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
             }
         }else{

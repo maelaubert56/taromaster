@@ -70,28 +70,44 @@ function AddDonne({setAddDonneDiplayed, partie}){
     }
 
     const onSubmit = async () => {
-        if(preneurSelected != null && indexContratSelected != null && indexBoutsSelected != null){
-            const res = computePoints(
-                partie.playerInGames.length,
-                partie.playerInGames[preneurSelected].joueur.idUser,
-                choisiSelected ? partie.playerInGames[choisiSelected].joueur.idUser : null,
-                getIdOnly(partie.playerInGames.filter((player) => player.joueur.idUser !== partie.playerInGames[preneurSelected].joueur.idUser && player.joueur.idUser !== preneurSelected ? partie.playerInGames[preneurSelected].joueur.idUser : null)),
-                contrats[indexContratSelected].coef,
-                targets[indexBoutsSelected].target,
-                ptsAttaque >= targets[indexBoutsSelected].target,
-                petitLastPliAttaque,
-                petitLastPliDefense,
-                ptsAttaque
-            )
 
-            for(let i=0; i<res.length; i++){
-                const response = await axios.get(`${process.env.REACT_APP_API}/playeringame/${partie.idPartie}/${res[i].id}`)
-                const old_points = response.data.points
-                const res2 = await axios.post(`${process.env.REACT_APP_API}/playeringame/update/${partie.idPartie}/${res[i].id}`, {
-                    points: old_points + res[i].points
-                })
+        if(preneurSelected != null && indexContratSelected != null && indexBoutsSelected != null){
+
+            const getPartie = await axios.get(`${process.env.REACT_APP_API}/parties/${partie.idPartie}`)
+
+            const updateDate = await axios.post(`${process.env.REACT_APP_API}/parties/update/${partie.idPartie}`,{
+                createdAt: new Date(),
+                nbDonnes: getPartie.data.nbDonnes + 1
+            })
+
+            if(updateDate){
+
+                const res = computePoints(
+                    partie.playerInGames.length,
+                    partie.playerInGames[preneurSelected].joueur.idUser,
+                    choisiSelected ? partie.playerInGames[choisiSelected].joueur.idUser : null,
+                    getIdOnly(partie.playerInGames.filter((player) => player.joueur.idUser !== partie.playerInGames[preneurSelected].joueur.idUser && player.joueur.idUser !== preneurSelected ? partie.playerInGames[preneurSelected].joueur.idUser : null)),
+                    contrats[indexContratSelected].coef,
+                    targets[indexBoutsSelected].target,
+                    ptsAttaque >= targets[indexBoutsSelected].target,
+                    petitLastPliAttaque,
+                    petitLastPliDefense,
+                    ptsAttaque
+                )
+
+                if(res){
+                    for(let i=0; i<res.length; i++){
+                        const response = await axios.get(`${process.env.REACT_APP_API}/playeringame/${partie.idPartie}/${res[i].id}`)
+                        const old_points = response.data.points
+                        const res2 = await axios.post(`${process.env.REACT_APP_API}/playeringame/update/${partie.idPartie}/${res[i].id}`, {
+                            points: old_points + res[i].points
+                        })
+                    }
+                    setAddDonneDiplayed(false)
+                }
+                
+
             }
-            setAddDonneDiplayed(false)
         }
     }
 

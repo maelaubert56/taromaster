@@ -12,7 +12,7 @@ function Account() {
 
     const [login, setLogin] = useState(true)
     const [error, setError] = useState(null)
-    const [avatar, setAvatar] = useState(JSON.parse(sessionStorage.getItem("session")).avatar)
+    const [avatar, setAvatar] = useState(JSON.parse(sessionStorage.getItem("session")) ? JSON.parse(sessionStorage.getItem("session")).avatar : 0)
     const [logged, setLogged] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -41,7 +41,6 @@ function Account() {
     }
 
     const onSubmitRegister = async (data) => {
-
         const {username, firstName, lastName, password} = data
         const new_password = bcrypt.hashSync(password, salt);
         axios.post(`${process.env.REACT_APP_API}/users/create`, {
@@ -53,7 +52,7 @@ function Account() {
         }).then((res) => {
             createSession(res.data)
         }).catch(e => {
-            setError(e.response.data)
+            console.log(e)
         })
     }
 
