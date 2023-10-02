@@ -11,7 +11,7 @@
  * @param {boolean} petitLastPliDefense Petit déposé au dernier pli par la défense
  * @param {number} ptsAttaque Points de l'attaque initialement
  */
-const computePoints = (n, p, a = null, d, coef, target, isValidated, petitLastPliAttaque, petitLastPliDefense, ptsAttaque) => {
+export const computePoints = (n, p, a = null, d, coef, target, isValidated, petitLastPliAttaque, petitLastPliDefense, ptsAttaque) => {
     let pts_p;
     let pts_c;
     let pts_d = 0;
@@ -69,4 +69,7 @@ const computePoints = (n, p, a = null, d, coef, target, isValidated, petitLastPl
     return attaque.concat(defense)
 }
 
-export default computePoints
+export function addMinutes(date, minutes) {
+    date.setMinutes(date.getMinutes() + minutes);
+    return date;
+}

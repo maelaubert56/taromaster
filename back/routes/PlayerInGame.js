@@ -100,4 +100,38 @@ router.get("/:id_partie/:id_player", async (req, res) => {
 
 })
 
+
+router.get("/join/:max_date/:id_partie/:id_joueur", async (req, res) => {
+    const {max_date, id_joueur, id_partie} = req.params
+
+    if(new Date() > max_date){
+        return res.status(400).json("Ce lien d'invitation a expiré")
+    }
+
+    const userInGame = await prisma.playerInGame.findUnique({
+        where:{
+            idJoueur_idPartie: {
+                idJoueur: parseInt(id_joueur),
+                idPartie: parseInt(id_partie)
+            }
+        }
+    })
+
+    if(userInGame){
+        return res.status(400).json("Vous avez déjà rejoins la partie")
+    }
+
+    const response = await prisma.playerInGame.create({
+        data:{
+            idPartie: parseInt(id_partie),
+            idJoueur: parseInt(id_joueur),
+            points: 0
+        }
+    })
+
+    return res.status(200).json(response)
+
+
+})
+
 module.exports = router

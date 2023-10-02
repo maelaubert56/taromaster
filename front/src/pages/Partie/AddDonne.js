@@ -3,7 +3,7 @@ import './AddDonne.css'
 import {useEffect, useState} from "react";
 import { useForm } from "react-hook-form"
 import axios from "axios"
-import computePoints from "../../helpers";
+import {computePoints} from "../../helpers";
 
 
 function AddDonne({setAddDonneDiplayed, partie}){

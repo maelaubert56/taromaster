@@ -1,0 +1,17 @@
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+.content > img {
+    display: block;
+    margin: auto;
+}
+
+.content > p {
+    text-align: center;
+    color: grey;
+}

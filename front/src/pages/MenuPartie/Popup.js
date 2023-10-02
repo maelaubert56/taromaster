@@ -4,6 +4,7 @@ import UsersList from "./UsersList.js";
 import {useEffect, useState} from "react";
 import { useForm } from "react-hook-form"
 import axios from "axios"
+import { addMinutes } from "../../helpers";
 
 
 function Popup({setPopupDiplayed, playersList, partie}){
@@ -49,7 +50,6 @@ function Popup({setPopupDiplayed, playersList, partie}){
                     id_partie: res.data.idPartie,
                     points: 0
                 }
-                console.log(obj)
                 await axios.post(`${process.env.REACT_APP_API}/playeringame/create`, obj)
             }
         }else{
@@ -83,7 +83,11 @@ function Popup({setPopupDiplayed, playersList, partie}){
         setPlayers(players.filter((player, key) => key !== index))
     }
 
-
+    const createLink = async () => {
+        const link = `${process.env.REACT_APP_CURRENT_PATH}/join/${addMinutes(new Date(), 10).getTime()}/${partie.idPartie}`
+        await navigator.clipboard.writeText(link)
+        alert("Lien copié dans le presse-papier !")
+    }
 
 
     return (
@@ -114,6 +118,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                                 </div>
                             </div>
                         </div>
+                        {partie && <p onClick={createLink} className="invite_link">Copier le lien d'invitation (valable 10 minutes)</p>}
                     </div>
                     <div className='button-area'>
                         <button>{partie ? "Enregistrer" : "Valider"}</button>
