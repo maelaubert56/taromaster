@@ -56,7 +56,7 @@ function Account() {
         }).then((res) => {
             createSession(res.data)
         }).catch(e => {
-            console.log(e)
+            setError("Ce nom d'utilisateur est déjà utilisé !")
         })
     }
 
