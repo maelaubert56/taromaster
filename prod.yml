@@ -31,8 +31,8 @@ services:
       - default
       - nginx-proxy_reverse-proxy
     environment:
-      - VIRTUAL_HOST=164.132.230.161:3333
-      - LETSENCRYPT_HOST=164.132.230.161:3333
+      - VIRTUAL_HOST=http://164.132.230.161:3333
+      - LETSENCRYPT_HOST=http://164.132.230.161:3333
       - DATABASE_URL=postgresql://username:password@db:5432/taromaster
 
 
@@ -53,10 +53,10 @@ services:
       - default
       - nginx-proxy_reverse-proxy
     environment:
-      - VIRTUAL_HOST=164.132.230.161:3000
-      - LETSENCRYPT_HOST=164.132.230.161:3000
-      - REACT_APP_CURRENT_PATH=164.132.230.161:3000
-      - REACT_APP_API=164.132.230.161:3333
+      - VIRTUAL_HOST=http://164.132.230.161:3000
+      - LETSENCRYPT_HOST=http://164.132.230.161:3000
+      - REACT_APP_CURRENT_PATH=http://164.132.230.161:3000
+      - REACT_APP_API=http://164.132.230.161:3333
 
 
 
