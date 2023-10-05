@@ -36,8 +36,12 @@ function Account() {
     const onSubmitLogin = async (data) => {
         const {username, password} = data
         const user = await axios.get(`${process.env.REACT_APP_API}/users/${username}`)
-        if(bcrypt.compareSync(password, user.data.password)) createSession(user.data)
-        setError("Nom d'utilisateur ou mot de passe incorrects !")
+        if(user.data){
+            if(bcrypt.compareSync(password, user.data.password)) createSession(user.data)
+        }
+        else{
+            setError("Nom d'utilisateur ou mot de passe incorrects !")
+        }
     }
 
     const onSubmitRegister = async (data) => {
