@@ -147,20 +147,24 @@ function AddDonne({setAddDonneDiplayed, partie}){
 
                         <div className='contrat'>
                             <h3>Contrat</h3>
-                            {contrats.map((contrat, index) => (
-                                <p onClick={() => setIndexContratSelected(index)} style={index === indexContratSelected ? { backgroundColor: "white" } : undefined} key={index}>{contrat.title}</p>
-                            ))}
+                            <div className='contrat-cards'>
+                                {contrats.map((contrat, index) => (
+                                    <p onClick={() => setIndexContratSelected(index)} style={index === indexContratSelected ? { backgroundColor: "white" } : undefined} key={index}>{contrat.title}</p>
+                                ))}
+                            </div>
                         </div>
 
                         <div className='contrat'>
                             <h3>Nombre de bouts</h3>
+                            <div className='contrat-cards'>
                             {targets.map((target, index) => (
                                 <p onClick={() => setIndexBoutsSelected(index)} style={index === indexBoutsSelected ? { backgroundColor: "white" } : undefined} key={index}>{target.bouts}</p>
                             ))}
+                            </div>
                         </div>
                         
                         <div className='points'>
-                            <label htmlFor="points">Nombre de point attaque</label>
+                            <h3 htmlFor="points">Nombre de point attaque</h3>
                             <input type="number" id="points" name="points" min="0" max="91" required value={ptsAttaque} onChange={(e) => setPtsAttaque(parseInt(e.target.value))} />
                         </div>
 
@@ -170,12 +174,13 @@ function AddDonne({setAddDonneDiplayed, partie}){
                             <p onClick={() => setValidated(false)} style={!validated ? {border: "2px solid red"} : null}>NON</p>
                         </div> */}
 
-                        <div className='contrat_valide'>
-                            <label>Le petit au dernier pli</label>
-                            <p onClick={() => {setPetitLastPliAttaque(!petitLastPliAttaque) ; setPetitLastPluDefense(false)}} style={petitLastPliAttaque ? {backgroundColor: "white"} : null}>Attaque</p>
-                            <p onClick={() => {setPetitLastPluDefense(!petitLastPliDefense) ; setPetitLastPliAttaque(false) }} style={petitLastPliDefense ? {backgroundColor: "white"}: null}>Défense</p>
+                        <div className='contrat'>
+                            <h3>Le petit au dernier pli</h3>
+                            <div className='contrat-cards'>
+                                <p onClick={() => {setPetitLastPliAttaque(!petitLastPliAttaque) ; setPetitLastPluDefense(false)}} style={petitLastPliAttaque ? {backgroundColor: "white"} : null}>Attaque</p>
+                                <p onClick={() => {setPetitLastPluDefense(!petitLastPliDefense) ; setPetitLastPliAttaque(false) }} style={petitLastPliDefense ? {backgroundColor: "white"}: null}>Défense</p>
+                            </div>
                         </div>
-
                     </div>
                     <div className='button-area'>
                         <button onClick={onSubmit}>Ajouter</button>

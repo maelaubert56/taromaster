@@ -214,12 +214,21 @@ label{
 .contrat{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
-.contrat > p {
+.contrat div{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.contrat p {
     border: 2px solid #333;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 10px;
     margin: 0;
 }
@@ -229,7 +238,7 @@ label{
     justify-content: space-between;
 }
 
-.contrat_valide > p {
+.contrat_valide p {
     border: 2px solid #333;
     padding: 5px;
     border-radius: 5px;
