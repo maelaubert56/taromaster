@@ -31,8 +31,8 @@ services:
       - default
       - nginx-proxy_reverse-proxy
     environment:
-      - VIRTUAL_HOST=api.taromaster.matteobonnet.fr
-      - LETSENCRYPT_HOST=api.taromaster.matteobonnet.fr
+      - VIRTUAL_HOST=https://api.taromaster.matteobonnet.fr
+      - LETSENCRYPT_HOST=https://api.taromaster.matteobonnet.fr
       - DATABASE_URL=postgresql://username:password@db:5432/taromaster
 
 
@@ -53,9 +53,9 @@ services:
       - default
       - nginx-proxy_reverse-proxy
     environment:
-      - VIRTUAL_HOST=taromaster.matteobonnet.fr
-      - LETSENCRYPT_HOST=taromaster.matteobonnet.fr
-      - REACT_APP_CURRENT_PATH=taromaster.matteobonnet.fr
+      - VIRTUAL_HOST=https://taromaster.matteobonnet.fr
+      - LETSENCRYPT_HOST=https://taromaster.matteobonnet.fr
+      - REACT_APP_CURRENT_PATH=https://taromaster.matteobonnet.fr
       - REACT_APP_API=https://api.taromaster.matteobonnet.fr
 
 
