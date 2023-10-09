@@ -9,7 +9,7 @@ const Join = () => {
 
     const {max_date, id_partie} = useParams()
     const [isValid, setisValid] = useState((new Date()).getTime() <= parseInt(max_date))
-    const [session, setSession] = useState(JSON.parse(sessionStorage.getItem("session")))
+    const [session, setSession] = useState(JSON.parse(localStorage.getItem("session")))
     const [error, setError] = useState(null)
 
     useEffect(() => {

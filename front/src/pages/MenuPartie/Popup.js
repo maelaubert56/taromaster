@@ -9,7 +9,7 @@ import { addMinutes } from "../../helpers";
 
 function Popup({setPopupDiplayed, playersList, partie}){
 
-    const user = JSON.parse(sessionStorage.getItem("session"))
+    const user = JSON.parse(localStorage.getItem("session"))
     const [players, setPlayers] = useState(playersList ?? [user])
     const [isUsersListDisplayed, setUsersListDiplayed] = useState(false)
     const [toDelete, setToDelete] = useState([])

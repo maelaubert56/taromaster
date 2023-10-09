@@ -12,24 +12,24 @@ function Account() {
 
     const [login, setLogin] = useState(true)
     const [error, setError] = useState(null)
-    const [avatar, setAvatar] = useState(JSON.parse(sessionStorage.getItem("session")) ? JSON.parse(sessionStorage.getItem("session")).avatar : 0)
+    const [avatar, setAvatar] = useState(JSON.parse(localStorage.getItem("session")) ? JSON.parse(localStorage.getItem("session")).avatar : 0)
     const [logged, setLogged] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        if(sessionStorage.getItem("session")) setLogged(true);//TODO: redirect to account
+        if(localStorage.getItem("session")) setLogged(true);//TODO: redirect to account
     }, [logged])
 
     const createSession = (user) => {
-        sessionStorage.setItem("session", JSON.stringify(user))
+        localStorage.setItem("session", JSON.stringify(user))
         setLogged(true)
         window.location.href='/'
     }
 
     const deconnexion = () => {
-        sessionStorage.removeItem("session")
+        localStorage.removeItem("session")
         setLogged(false)
     }
 
@@ -62,12 +62,12 @@ function Account() {
 
     const onSubmitEdit = async (data) => {
         const {firstName, lastName} = data
-        const res = await axios.post(`${process.env.REACT_APP_API}/users/update/${JSON.parse(sessionStorage.getItem("session")).username}`, {
+        const res = await axios.post(`${process.env.REACT_APP_API}/users/update/${JSON.parse(localStorage.getItem("session")).username}`, {
             firstName,
             lastName,
             avatar
         })
-        sessionStorage.setItem("session", JSON.stringify(res.data))
+        localStorage.setItem("session", JSON.stringify(res.data))
     }
 
     return (
@@ -82,9 +82,9 @@ function Account() {
                         <div className="pp_list">
                             <ChooseAvatar avatar={avatar} setAvatar={setAvatar} />
                         </div>
-                        <p className='username_form'><u>Username</u> : <i>{JSON.parse(sessionStorage.getItem("session")).username}</i></p>
-                        <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(sessionStorage.getItem("session")).firstName} />
-                        <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(sessionStorage.getItem("session")).lastName} />
+                        <p className='username_form'><u>Username</u> : <i>{JSON.parse(localStorage.getItem("session")).username}</i></p>
+                        <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(localStorage.getItem("session")).firstName} />
+                        <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(localStorage.getItem("session")).lastName} />
 
                         <input type="submit" value="Appliquer" />
                         <p onClick={deconnexion} className='deconnexion'>Se déconnecter</p>
