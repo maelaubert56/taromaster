@@ -56,7 +56,7 @@ services:
       - VIRTUAL_HOST=taromaster.matteobonnet.fr
       - LETSENCRYPT_HOST=taromaster.matteobonnet.fr
       - REACT_APP_CURRENT_PATH=taromaster.matteobonnet.fr
-      - REACT_APP_API=api.taromaster.matteobonnet.fr
+      - REACT_APP_API=https://api.taromaster.matteobonnet.fr
 
 
 
