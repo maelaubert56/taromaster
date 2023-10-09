@@ -35,7 +35,7 @@ function Account() {
 
     const onSubmitLogin = async (data) => {
         const {username, password} = data
-        axios.get("https://api.taromaster.matteobonnet.fr/users/matt").then(res => {
+        axios.get(process.env.REACT_APP_API + "/users/matt").then(res => {
             console.log(res)
         }).catch(e => {
             console.log(e)
