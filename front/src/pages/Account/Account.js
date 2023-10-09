@@ -35,8 +35,12 @@ function Account() {
 
     const onSubmitLogin = async (data) => {
         const {username, password} = data
+        axios.get("https://api.taromaster.matteobonnet.fr/users/matt").then(res => {
+            console.log(res)
+        }).catch(e => {
+            console.log(e)
+        })
         const user = await axios.get(`${process.env.REACT_APP_API}/users/${username}`)
-        console.log("TEST")
         if(user.data){
             if(bcrypt.compareSync(password, user.data.password)) createSession(user.data)
         }
