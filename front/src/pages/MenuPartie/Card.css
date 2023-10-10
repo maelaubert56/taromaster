@@ -100,13 +100,13 @@
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     font-size: 21px;
-    margin: 0 40px;
+    margin: 0 15px;
     padding: 5px 0;
 }
 
 .middle-card>div{
     display: flex;
-    font-size: 21px;
+    font-size: 15px;
     font-style: italic;
     align-items: center;
 
@@ -124,6 +124,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding: 0 5px;
 }
 
 .score{
