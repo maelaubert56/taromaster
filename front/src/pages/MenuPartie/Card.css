@@ -54,11 +54,17 @@
 
 }
 .top-middle-card span{
+    text-align: center;
     background: #264653;
     padding: 0 15px 5px 15px;
     border-radius: 0 0 15px 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width:100px;
+    height: 1.2em;
     white-space: nowrap;
 }
+
 
 .corner-left, .corner-right{
     width: 10px;

@@ -5,7 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import bcrypt from 'bcryptjs'
 import ChooseAvatar from "./ChooseAvatar";
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo-0.5.png"
 const salt = bcrypt.genSaltSync(10)
 
 function Account() {

@@ -2,16 +2,6 @@ import './Card.css'
 import {useEffect} from "react";
 function Card({index, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, pseudoFirst, nbJoueurs}){
 
-    useEffect(() => {
-        let div = document.querySelector('.corner-color-div span');
-        /* if the string is more than 10 characters, we cut it */
-        let nbCharac = div.innerHTML.length;
-        if(nbCharac > 15){
-            // only let 10 characters and add '...' at the end
-            div.innerHTML = div.innerHTML.substring(0, 10) + '...';
-        }
-    }, []);
-
     return(
         <a href={`/partie/${id}`} className='card' key={index}>
             <div className='top-card'>
