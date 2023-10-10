@@ -10,7 +10,7 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
 
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
+        axios.get(`${process.env.REACT_APP_API}/users/search/${search.toLowerCase()}`).then(res => {
             if(res.data) {
                 setResult(res.data)
             }

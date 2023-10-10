@@ -27,7 +27,7 @@
   margin: 0;
   margin-top: 80px;
   font-family: K2D, serif;
-  font-size: 50px;
+  font-size: 40px;
   color: white;
 }
 
@@ -44,7 +44,7 @@
 .rules-content h2 {
   align-self: center;
   font-family: K2D, serif;
-  font-size: 30px;
+  font-size: 25px;
   color: #F4A261;
   font-style:italic;
   margin: 0;
@@ -55,7 +55,7 @@
   text-align: justify;
   align-self: flex-start;
   font-family: K2D, serif;
-  font-size: 22px;
+  font-size: 15px;
   color: white;
   margin: 0;
   margin-bottom: 20px;
@@ -65,7 +65,7 @@
 }
 
 .rules-content li {
-  font-size: 22px;
+  font-size: 15px;
   color: white;
 }
 
@@ -75,7 +75,6 @@
 }
 .rules-content li span {
   margin-left:10px;
-  font-size: 20px;
 }
 
 

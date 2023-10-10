@@ -33,6 +33,12 @@ footer a{
     padding:0 !important;
 }
 
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
 footer a:active{
     transform: scale(0.95);
 }
@@ -40,3 +46,4 @@ footer a:active{
 footer a img{
     width: 100%;
 }
+
