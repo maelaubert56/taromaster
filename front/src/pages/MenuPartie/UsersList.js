@@ -4,13 +4,17 @@ import axios from "axios"
 
 function UsersList({setUsersListDiplayed, setPlayers, players, old}){
 
-
-    const [search, setSearch] = useState(null)
+    let [search, setSearch] = useState(null)
     const [result, setResult] = useState([])
 
-
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/users/search/${search.toLowerCase()}`).then(res => {
+        /* check if search is empty */
+        if(!(search === null || search === '')) {
+            /* tolowercase and trim the search */
+            search = search.toLowerCase().trim()
+        }
+
+        axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
             if(res.data) {
                 setResult(res.data)
             }
