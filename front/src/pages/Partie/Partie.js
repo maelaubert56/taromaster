@@ -43,7 +43,6 @@ function Partie() {
             {isOpen && players && <Popup setPopupDiplayed={setPopupDiplayed} playersList={players} partie={partie} />}
 
             {partie && !isOpen && <div className='partie'>
-                <img src={`/bannerPictures/banner${partie.banner}.png`} alt="partie de tarot"/>
                 <div className='partie-bottom'>
                     <h1>{partie.name}</h1>
                     <div className='partie-bottom-infos'>
@@ -58,11 +57,10 @@ function Partie() {
                                     <img src={`/profilePictures/pp${player.joueur.avatar}.png`} alt="profile" />
                                     <p>{player.joueur.username}</p>
                                 </div>
-                                <p>{player.points} points</p>
+                                <p>{player.points} <span>{player.points > 1 ? "points" : "point"}</span></p>
                             </div>
                         ))}
                     </div>
-                    <span className='date_partie'>Dernière donne le {partie.createdAt.split("T")[0]} à {partie.createdAt.split("T")[1].split(".")[0][0]+partie.createdAt.split("T")[1].split(".")[0][1]}:{partie.createdAt.split("T")[1].split(".")[0][3]+partie.createdAt.split("T")[1].split(".")[0][4]}</span>
                     <div className='stats'></div>
 
                     <div className='add-donne' onClick={()=>setAddDonneDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
