@@ -80,9 +80,7 @@ function Account() {
                     </svg>
                     <img src={logo} alt="logo" className='account_logo'/>
                     <form onSubmit={handleSubmit(onSubmitEdit)} className='form_register'>
-                        <div className="pp_list">
-                            <ChooseAvatar avatar={avatar} setAvatar={setAvatar} />
-                        </div>
+                        <ChooseAvatar avatar={avatar} setAvatar={setAvatar} />
                         <p className='username_form'><u>Username</u> : <i>{JSON.parse(localStorage.getItem("session")).username}</i></p>
                         <input type="text" {...register("firstName")} placeholder="Prénom" defaultValue={JSON.parse(localStorage.getItem("session")).firstName} />
                         <input type="text" {...register("lastName")} placeholder="Nom" defaultValue={JSON.parse(localStorage.getItem("session")).lastName} />

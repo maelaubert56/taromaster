@@ -20,18 +20,15 @@ function Card({index, id, nbDonne, nomPartie, date, pictureFirst, scoreFirst, ps
                 </div>
             </div>
             <div className='middle-card'>
-                <span>1er</span>
+                <p>1<span>er</span></p>
                 <div>
                     <img src={`/profilePictures/${pictureFirst}`} alt="profile"/>
                     <span>{pseudoFirst}</span>
                 </div>
                 <span className='score'>
                     {scoreFirst}
-                    <span> points</span>
+                    <span>{scoreFirst > 1 ? " points" : " point"}</span>
                 </span>
-            </div>
-            <div className='bottom-card'>
-                <i>dernière donne le {date}</i>
             </div>
         </a>
 

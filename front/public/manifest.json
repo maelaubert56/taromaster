@@ -1,6 +1,6 @@
 {
-  "short_name": "Taromètre",
-  "name": "Un taromètre pour suivre ses parties de tarot",
+  "short_name": "Taromaster",
+  "name": "Compte tes points avec TaroMaster !",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
