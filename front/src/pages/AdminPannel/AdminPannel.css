@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
-    height: 100vh;
+    min-height: 100vh;
     padding: 50px 20px;
     background: #264653;
     color: #fff;
@@ -157,7 +157,7 @@
     display:flex;
     flex-direction:row;
     align-items:center;
-    justify-content: flex-start;
+    justify-content: space-between;
     border-bottom: 1px solid #fff;
 }
 
@@ -180,6 +180,13 @@
     font-size: 20px;
     font-weight: normal;
     color: #fff;
+}
+
+.admin-star{
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: 10px;
+    margin: 10px 20px 10px 10px;
 }
 
 .admin-user-content>span{
@@ -216,10 +223,14 @@
 }
 
 /*if the text inside the span is admin, change the color to yellow*/
-.admin-user-selected .admin-user-carac{
+.admin-user-carac, .normal-user-carac{
     color: #ffd000;
     font-size: 17px;
     font-style: italic;
+}
+
+.normal-user-carac{
+    color: #2A9D8F;
 }
 
 .admin-user-buttons{
@@ -232,7 +243,7 @@
     gap:10px;
 }
 
-.admin-users-delete, .admin-users-setadmin{
+.admin-users-delete, .admin-users-setadmin, .admin-users-setuser{
     width: 100%;
     margin-top:10px;
     border-radius: 20px;
@@ -248,6 +259,12 @@
 }
 
 .admin-users-setadmin{
+    /*promouvoir*/
     background: #2A9D8F;
+}
+
+.admin-users-setuser{
+    /*rétrograder*/
+    background: #F4A261;
 }
 

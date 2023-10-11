@@ -1,24 +1,47 @@
 import './AdminPannel.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios"
 
 function AdminPannel(){
 
-    var nbInscrits = 12654;
-    var nbParties = 812654;
-
+    /* get the number of users and the number of parties */
+    const [nbUsers, setNbUsers] = useState(0)
+    const [nbParties, setNbParties] = useState(0)
+    const [session, setSession] = useState(JSON.parse(localStorage.getItem("session")))
     let [search, setSearch] = useState(null)
     const [result, setResult] = useState([])
     const [userSelected, setUserSelected] = useState(null)
 
-    /* click on a user */
-    const click = async (profile) => {
-        setUserSelected(profile)
+    useEffect(() => { // check if the user is connected, if not redirect to the login page
+        if(session)axios.get(`${process.env.REACT_APP_API}/users/${session.username}`).then(res => {
+            if(res.data){
+                setSession(res.data)
+                //TODO: uncomment when the database is updated
+                //if(!res.data.admin) window.location.href = "/"
+            }
+        });else window.location.href = "/account"
+    }, [])
+
+    /* get the number of users and the number of parties */
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API}/admin/stats`).then(res => {
+            if(res.data){
+                setNbUsers(res.data.nbUsers)
+                setNbParties(res.data.nbParties)
+            }
+        })
+    }, [])
+
+    const deleteUser = async (idUser) => {
+        await axios.delete(`${process.env.REACT_APP_API}/users/delete/${idUser}`)
+        window.location.reload()
     }
 
-    const deleteUser = async () => {
-        if(userSelected){
-            console.log(userSelected + " deleted")
-        }
+    const changeStatus = async (user) => {
+        await axios.post(`${process.env.REACT_APP_API}/users/update/${user.idUser}`, {
+            admin: !user.admin
+        })
+        window.location.reload()
     }
 
     /* TEMPORAIRE */
@@ -29,6 +52,7 @@ function AdminPannel(){
             firstName: 'Jean',
             lastName: 'Jean',
             avatar: 1,
+            admin: true
         },
         {
             idUser: 2,
@@ -36,6 +60,7 @@ function AdminPannel(){
             firstName: 'Pierre',
             lastName: 'Pierre',
             avatar: 2,
+            admin: false
         },
         {
             idUser: 3,
@@ -43,6 +68,7 @@ function AdminPannel(){
             firstName: 'Paul',
             lastName: 'Paul',
             avatar: 3,
+            admin: false
         },
         {
             idUser: 4,
@@ -50,6 +76,7 @@ function AdminPannel(){
             firstName: 'Jacques',
             lastName: 'Jacques',
             avatar: 4,
+            admin: false
         },
         {
             idUser: 5,
@@ -57,6 +84,7 @@ function AdminPannel(){
             firstName: 'Jeanne',
             lastName: 'Jeanne',
             avatar: 5,
+            admin: true
         },
         {
             idUser: 6,
@@ -64,6 +92,7 @@ function AdminPannel(){
             firstName: 'Marie',
             lastName: 'Marie',
             avatar: 6,
+            admin: true
         },
         {
             idUser: 7,
@@ -71,6 +100,7 @@ function AdminPannel(){
             firstName: 'Julie',
             lastName: 'Julie',
             avatar: 7,
+            admin: false
         },
         {
             idUser: 8,
@@ -78,6 +108,7 @@ function AdminPannel(){
             firstName: 'Julien',
             lastName: 'Julien',
             avatar: 8,
+            admin: false
         }
     ]
 
@@ -94,7 +125,7 @@ function AdminPannel(){
                     <h2>Stats</h2>
                     <div className='admin-stats-content'>
                         <span>
-                            <h3>{nbInscrits}</h3>
+                            <h3>{nbUsers}</h3>
                             <p>Nombre d'inscrits</p>
                         </span>
                         <span>
@@ -112,9 +143,10 @@ function AdminPannel(){
                         <div className='admin-users-list'>
                             {resultTemp.length > 0 && resultTemp.map((profile, index) => {
                                 return(
-                                    <div className='user-admin' key={index} onClick={() => click(profile)}>
+                                    <div className='user-admin' key={index} onClick={() => setUserSelected(profile)}>
                                         <img src={`/profilePictures/pp${profile.avatar}.png`} alt="profile" />
                                         <span>{profile.username}</span>
+                                        {profile.admin ? <img src="/star.svg" alt="admin" className='admin-star' /> :<span src="" alt="" className='admin-star'/>}
                                     </div>
                                 )
                             })}
@@ -123,11 +155,13 @@ function AdminPannel(){
                     {userSelected !== null &&
                         <div className='admin-users-selected'>
                             <p>Utilisateur sélectionné :</p>
-                            <p className="admin-user-selected">{userSelected.username} {/*TODO ajouter variable userSelected.admin*/}<span className="admin-user-carac">(admin)</span></p>
+                            <p className="admin-user-selected">{userSelected.username} {userSelected.admin ? <span className="admin-user-carac">(admin)</span> : <span className="normal-user-carac">(user)</span>}</p>
                             <div className="admin-user-buttons">
                                 <button className='admin-users-delete' onClick={() => deleteUser(userSelected.idUser)}>Supprimer le compte</button>
-                                {/*TODO changer en fonction de userSelected.admin*/}
-                                <button className='admin-users-setadmin'>Rendre admin</button>
+                                {userSelected.admin ?
+                                    <button className='admin-users-setuser' onClick={() => changeStatus(userSelected)}>Rétrograder user</button>
+                                    : <button className='admin-users-setadmin' onClick={() => changeStatus(userSelected)}>Rendre admin</button>
+                                }
                             </div>
                         </div>
                     }

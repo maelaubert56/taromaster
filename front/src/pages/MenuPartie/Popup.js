@@ -105,7 +105,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                             <div className='players'>
                                 {players && players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
-                                        {player.idUser !== user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
+                                        {player.idUser !== user.idUser && <img src="/close.svg" className="delete" alt="Delete" onClick={() => deleteElement(index)} />}
                                         <img className="pp" src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
                                         <span>{player.username}</span>
                                     </div>
@@ -116,7 +116,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                                 </div>
                             </div>
                         </div>
-                        {partie && <p onClick={createLink} className="invite_link">Copier le lien d'invitation (valable 10 minutes)</p>}
+                        {partie && <p onClick={createLink} className="invite_link">Copier le lien d'invitation<br/>(valable 10 minutes)</p>}
                     </div>
                     <div className='button-area'>
                         <button>{partie ? "Enregistrer" : "Valider"}</button>

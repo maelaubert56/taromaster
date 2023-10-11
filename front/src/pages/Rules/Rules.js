@@ -1,6 +1,13 @@
 import './Rules.css'
+import { useState } from 'react';
 
 function Rules() {
+    // if mouse hover '.circle' then add '.flipping' class
+
+    function flipCard(circle) {
+        document.querySelector(`.${circle}`).classList.toggle('flipping')
+    }
+
     return (
         <div className='rules'>
             <svg xmlns="http://www.w3.org/2000/svg" width="33" height="24" viewBox="0 0 33 24" fill="none" className='backarrow' onClick={() => window.location.href = '/'}>
@@ -58,6 +65,68 @@ function Rules() {
 
                 <h2>Bonus/Malus :</h2>
                 <p>Nan frérot abuse pas c'est déja assez compliqué comme ca ...</p>
+
+                <h2>Crédits:</h2>
+                <p>Cette webapp a été réalisée par:</p>
+                <ul className="credits">
+
+                    <li>
+                        <div className="flip-container">
+                            <div className="circle circle1" onClick={() => flipCard("circle1")}>
+                                <div className="front-img">
+                                    <img  src="/credits/mael1.jpeg"/>
+                                </div>
+                                <div className="back-img">
+                                    <img  src="/credits/mael2.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://github.com/maelaubert56">Maël Aubert</a>
+                        <span>Front-end Developer</span>
+                    </li>
+                    <li>
+                        <div className="flip-container">
+                            <div className="circle circle2" onClick={() => flipCard("circle2")}>
+                                <div className="front-img">
+                                    <img  src="/credits/matteo1.jpeg"/>
+                                </div>
+                                <div className="back-img">
+                                    <img  src="/credits/matteo2.png"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="https://github.com/0zzone">Mattéo Bonnet</a>
+                        <span>Back-end Developer</span>
+                    </li>
+                    <li>
+                        <div className="flip-container">
+                            <div className="circle circle3" onClick={() => flipCard("circle3")}>
+                                <div className="front-img">
+                                    <img  src="/credits/quentin1.jpeg"/>
+                                </div>
+                                <div className="back-img">
+                                    <img  src="/credits/quentin2.png"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/">Quentin Adeline</a>
+                        <span>Graphic Designer</span>
+                    </li>
+                    <li>
+                        <div className="flip-container">
+                            <div className="circle circle4" onClick={() => flipCard("circle4")}>
+                                <div className="front-img">
+                                    <img  src="/credits/kevin1.jpeg"/>
+                                </div>
+                                <div className="back-img">
+                                    <img  src="/credits/kevin2.jpg"/>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/">Kevin Kurtz</a>
+                        <span>Project Manager</span>
+                    </li>
+                </ul>
             </div>
         </div>
     )

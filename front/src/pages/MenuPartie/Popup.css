@@ -212,7 +212,7 @@ label{
 }
 
 .delete{
-    width: 10px;
+    width: 30px !important;
     height: auto;
     position: absolute;
     top: -20px;
