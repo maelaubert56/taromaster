@@ -29,6 +29,7 @@
     height: 90%;
     background: #D9D9D9;
     border-radius: 20px;
+    padding-top: 20px;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -57,9 +58,6 @@
     }
 }
 
-.game-popup-banner{
-    width: 100%;
-}
 
 .game-popup-form{
     width: 100%;
@@ -121,11 +119,6 @@ label{
     color: #264653;
 }
 
-.game-popup-banner img{
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
 
 .players{
     width: 100%;

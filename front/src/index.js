@@ -14,7 +14,8 @@ import MenuPartie from "./pages/MenuPartie/MenuPartie.js";
 import Partie from "./pages/Partie/Partie.js";
 import Account from "./pages/Account/Account.js";
 import Rules from "./pages/Rules/Rules.js";
-import Join from './pages/Join/Join';
+import Join from './pages/Join/Join.js';
+import AdminPannel from "./pages/AdminPannel/AdminPannel.js";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,9 @@ const router = createBrowserRouter([
     },{
         path:"/join/:max_date/:id_partie",
         element: <Join />
+    },{
+        path:"/admin",
+        element: <AdminPannel />
     }
 ]);
 

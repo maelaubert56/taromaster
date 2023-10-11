@@ -42,7 +42,7 @@ function Partie() {
             </svg>
             {isOpen && players && <Popup setPopupDiplayed={setPopupDiplayed} playersList={players} partie={partie} />}
 
-            {partie && !isOpen && <div className='partie'>
+            {partie && <div className='partie'>
                 <div className='partie-bottom'>
                     <h1>{partie.name}</h1>
                     <div className='partie-bottom-infos'>
@@ -65,7 +65,7 @@ function Partie() {
 
                     <div className='add-donne' onClick={()=>setAddDonneDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
 
-                    <div className='edit_partie' onClick={() => setPopupDiplayed(true)}><img src="/edit.png" alt="Edit" style={{width: "30px"}}  /></div>
+                    <div className='edit_partie' onClick={() => {setPopupDiplayed(true);document.querySelector(".backarrow").style.display = "none";}}><img src="/edit.png" alt="Edit" style={{width: "30px"}}  /></div>
                 </div>
             </div>}
             {addDonneDisplayed &&

@@ -105,15 +105,10 @@
     margin-bottom: 20px;
 }
 
-{
-
-}
-
 .middle-card>div{
     display: flex;
     font-size: 15px;
     align-items: center;
-
 }
 
 .middle-card>div>img{
