@@ -12,12 +12,12 @@ function AdminPannel(){
     const [result, setResult] = useState([])
     const [userSelected, setUserSelected] = useState(null)
 
-    useEffect(() => { // check if the user is connected, if not redirect to the login page
+    // check if the user is connected, if not redirect to the login page
+    useEffect(() => {
         if(session)axios.get(`${process.env.REACT_APP_API}/users/${session.username}`).then(res => {
             if(res.data){
                 setSession(res.data)
-                //TODO: uncomment when the database is updated
-                //if(!res.data.admin) window.location.href = "/"
+                if(!res.data.admin) window.location.href = "/"
             }
         });else window.location.href = "/account"
     }, [])

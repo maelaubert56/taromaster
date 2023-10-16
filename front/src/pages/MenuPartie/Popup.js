@@ -43,7 +43,8 @@ function Popup({setPopupDiplayed, playersList, partie}){
         if(!partie){
             const res = await axios.post(`${process.env.REACT_APP_API}/parties/create`, {
                 name: gameName,
-                banner: 0
+                banner: 0,
+                ownerId: user.idUser
             })
             for(let i=0; i<players.length; i++){
                 const obj = {

@@ -113,7 +113,7 @@ function Account() {
                         <input type="text" {...register("lastName")} placeholder="Nom" />
                         <input type="text" {...register("firstName")} placeholder="Prénom" />
                         <input type="password" {...register("password")} placeholder="Mot de passe" />
-                        <input type="submit" value="S'inscrire'" />
+                        <input type="submit" value="S'inscrire" />
                         <p>Déja inscrit ?</p>
                         <p onClick={() => setLogin(true)}className='change_type'>Connectez vous</p>
                     </form>

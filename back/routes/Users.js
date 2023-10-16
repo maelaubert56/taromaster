@@ -83,6 +83,7 @@ router.post("delete/:username", async (req, res) => {
         return res.status(200).json(response)
     }*/
     // TODO: temporaire en attendant de gérer les admins dans la bdd
+
     const {username} = req.params
     // check if the user to delete is not the one who is connected
     const response = await prisma.users.delete({

@@ -61,7 +61,9 @@ function Partie() {
                             </div>
                         ))}
                     </div>
-                    <div className='stats'></div>
+                    <div className='owner'>
+                        <p>Créateur : <span>{partie.playerInGames.find(player => player.joueur.idUser === partie.ownerId).joueur.username}</span></p>
+                    </div>
 
                     <div className='add-donne' onClick={()=>setAddDonneDiplayed(true)}><img src={plus_icon} alt="ajouter"/></div>
 
