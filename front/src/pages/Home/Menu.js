@@ -1,8 +1,20 @@
 import './Menu.css';
+import {useEffect, useState} from 'react';
+import axios from "axios";
 
 function Menu() {
+    const [admin, setAdmin] = useState(false)
+    const [session, setSession] = useState(JSON.parse(localStorage.getItem("session")))
 
-    const admin = true;
+    useEffect(() => {
+        if(session)axios.get(`${process.env.REACT_APP_API}/users/${session.username}`).then(res => {
+            if(res.data.privilege>0) {
+                setSession(res.data)
+                setAdmin(true)
+            }
+        })
+    }, [])
+
     return (
 
         <div className='menu'>
