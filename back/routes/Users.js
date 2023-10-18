@@ -37,16 +37,16 @@ router.post("/create", async(req, res) => {
 })
 
 //update privilege
-router.post("/update/privilege/:username", async (req, res) => {
-    const {username} = req.params
+router.post("/update/privilege/:idUser", async (req, res) => {
+    const {idUser} = req.params
     const {privilege} = req.body
 
     const response = await prisma.users.update({
         where:{
-            username
+            idUser: parseInt(idUser)
         },
         data:{
-            privilege
+            privilege: parseInt(privilege)
         }
     })
 
@@ -78,30 +78,28 @@ router.post("/update/:old_username", async (req, res) => {
 })
 
 
-router.post("delete/:username", async (req, res) => {
-    /*
-    // get the user id from the token
-    const idUser = req.user.idUser
+router.post("/delete/:idToDelete", async (req, res) => {
 
     // check if the user is an admin
-    const user = await prisma.users.findUnique({
+    const asker = await prisma.users.findUnique({
         where:{
-            idUser
+            idUser: req.body.idAsker
         }
     })
 
-    if(!user.admin) return res.status(401).json("Vous n'avez pas les droits pour effectuer cette action")
+    if(asker.privilege === 0) return res.status(401).json("Vous n'avez pas les droits pour effectuer cette action")
     else{
-        const {username} = req.params
+        const {idToDelete} = req.params
         const response = await prisma.users.delete({
             where:{
-                username
+                idUser: parseInt(idToDelete)
             }
         })
         return res.status(200).json(response)
-    }*/
-    // TODO: temporaire en attendant de gérer les admins dans la bdd
+    }
 
+    // TODO: temporaire en attendant de gérer les admins dans la bdd
+    /*
     const {username} = req.params
     // check if the user to delete is not the one who is connected
     const response = await prisma.users.delete({
@@ -110,8 +108,8 @@ router.post("delete/:username", async (req, res) => {
         }
     });
     return res.status(200).json(response)
+    */
 })
-
 
 
 

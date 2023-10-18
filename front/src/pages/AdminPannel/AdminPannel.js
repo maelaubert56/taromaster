@@ -1,6 +1,7 @@
 import './AdminPannel.css'
 import {useEffect, useState} from "react";
 import axios from "axios"
+import DeletePopup from "../../pages/AdminPannel/DeletePopup.js";
 
 function AdminPannel(){
 
@@ -12,6 +13,7 @@ function AdminPannel(){
     const [result, setResult] = useState([])
     const [userSelected, setUserSelected] = useState(null)
     const [able, setAble] = useState(false)
+    const [deletePopup, setDeletePopup] = useState(false)
 
     // check if the user is connected, if not redirect to the login page
     useEffect(() => {
@@ -34,15 +36,22 @@ function AdminPannel(){
     }, [])
 
     const deleteUser = async (idUser) => {
-        await axios.delete(`${process.env.REACT_APP_API}/users/delete/${idUser}`)
-        window.location.reload()
+        await axios.post(`${process.env.REACT_APP_API}/users/delete/${idUser}`,
+            {
+                idAsker: session.idUser
+            })
+        setResult([])
+        setUserSelected(null)
+        setDeletePopup(false)
     }
+
 
     const changePrivilege = async (user, privilege) => {
         await axios.post(`${process.env.REACT_APP_API}/users/update/privilege/${user.idUser}`, {
-            privilege
+            privilege: privilege
         })
-        window.location.reload()
+        setResult([])
+        setUserSelected(null)
     }
 
     /* get all the users data*/
@@ -54,7 +63,7 @@ function AdminPannel(){
                 setResult([])
             }
         })
-    }, [])
+    }, [result])
 
     /* TEMPORAIRE */
     const resultTemp = [
@@ -132,7 +141,7 @@ function AdminPannel(){
             <svg xmlns="http://www.w3.org/2000/svg" width="33" height="24" viewBox="0 0 33 24" fill="none" className='backarrow' onClick={() => window.location.href = '/'}>
                 <path d="M0.939339 10.9393C0.353554 11.5251 0.353554 12.4749 0.939339 13.0607L10.4853 22.6066C11.0711 23.1924 12.0208 23.1924 12.6066 22.6066C13.1924 22.0208 13.1924 21.0711 12.6066 20.4853L4.12132 12L12.6066 3.51472C13.1924 2.92893 13.1924 1.97918 12.6066 1.3934C12.0208 0.80761 11.0711 0.80761 10.4853 1.3934L0.939339 10.9393ZM33 10.5L2 10.5L2 13.5L33 13.5L33 10.5Z"/>
             </svg>
-            <h1>Admin Pannel</h1>
+            <h1>Admin Panel</h1>
             <div className='admin-content'>
                 <div className='admin-stats'>
                     <h2>Stats</h2>
@@ -176,7 +185,7 @@ function AdminPannel(){
                             </p>
                             { (userSelected.privilege===0 || (userSelected.privilege===1 && session.privilege===2)) &&
                             <div className="admin-user-buttons">
-                                <button className='admin-users-delete' onClick={() => deleteUser(userSelected.idUser)}>Supprimer le compte</button>
+                                <button className='admin-users-delete' onClick={() => setDeletePopup(true)}>Supprimer</button>
                                 {session.privilege===2 &&
                                     userSelected.privilege>0 ?
                                     <button className='admin-users-setuser' onClick={() => changePrivilege(userSelected,0)}>Rétrograder</button>
@@ -188,7 +197,10 @@ function AdminPannel(){
                     }
                 </div>
             </div>
-        </div>
+            {
+                deletePopup && <DeletePopup   deleteUser={deleteUser} user={userSelected} closePopup={() => setDeletePopup(false)} />
+            }
+            </div>
         :
         <div className='admin'>
             <p>Chargement ...</p>
