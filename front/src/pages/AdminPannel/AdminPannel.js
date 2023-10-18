@@ -24,7 +24,6 @@ function AdminPannel(){
         else window.location.href = "/account"
     }, [])
 
-    /* get the number of users and the number of parties */
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API}/admin/stats`).then(res => {
             if(res.data){
@@ -39,12 +38,23 @@ function AdminPannel(){
         window.location.reload()
     }
 
-    const changeStatus = async (user) => {
-        await axios.post(`${process.env.REACT_APP_API}/users/update/${user.idUser}`, {
-            admin: !user.admin
+    const changePrivilege = async (user, privilege) => {
+        await axios.post(`${process.env.REACT_APP_API}/users/update/privilege/${user.idUser}`, {
+            privilege
         })
         window.location.reload()
     }
+
+    /* get all the users data*/
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API}/users/data/all`).then(res => {
+            if(res.data){
+                setResult(res.data)
+            }else{
+                setResult([])
+            }
+        })
+    }, [])
 
     /* TEMPORAIRE */
     const resultTemp = [
@@ -54,7 +64,7 @@ function AdminPannel(){
             firstName: 'Jean',
             lastName: 'Jean',
             avatar: 1,
-            admin: true
+            privilege: 1
         },
         {
             idUser: 2,
@@ -62,7 +72,7 @@ function AdminPannel(){
             firstName: 'Pierre',
             lastName: 'Pierre',
             avatar: 2,
-            admin: false
+            privilege: 2
         },
         {
             idUser: 3,
@@ -70,7 +80,7 @@ function AdminPannel(){
             firstName: 'Paul',
             lastName: 'Paul',
             avatar: 3,
-            admin: false
+            privilege: 0
         },
         {
             idUser: 4,
@@ -78,7 +88,7 @@ function AdminPannel(){
             firstName: 'Jacques',
             lastName: 'Jacques',
             avatar: 4,
-            admin: false
+            privilege: 0
         },
         {
             idUser: 5,
@@ -86,7 +96,7 @@ function AdminPannel(){
             firstName: 'Jeanne',
             lastName: 'Jeanne',
             avatar: 5,
-            admin: true
+            privilege: 0
         },
         {
             idUser: 6,
@@ -94,7 +104,7 @@ function AdminPannel(){
             firstName: 'Marie',
             lastName: 'Marie',
             avatar: 6,
-            admin: true
+            privilege: 1
         },
         {
             idUser: 7,
@@ -102,7 +112,7 @@ function AdminPannel(){
             firstName: 'Julie',
             lastName: 'Julie',
             avatar: 7,
-            admin: false
+            privilege: 1
         },
         {
             idUser: 8,
@@ -110,7 +120,7 @@ function AdminPannel(){
             firstName: 'Julien',
             lastName: 'Julien',
             avatar: 8,
-            admin: false
+            privilege: 0
         }
     ]
 
@@ -144,12 +154,12 @@ function AdminPannel(){
                             <input type='text' id='search-admin' name='search' placeholder='Rechercher un joueur' value={search} onChange={(e) => setSearch(e.target.value)} />
                         </div>
                         <div className='admin-users-list'>
-                            {resultTemp.length > 0 && resultTemp.map((profile, index) => {
+                            {result.length > 0 && result.map((profile, index) => {
                                 return(
                                     <div className='user-admin' key={index} onClick={() => setUserSelected(profile)}>
                                         <img src={`/profilePictures/pp${profile.avatar}.png`} alt="profile" />
                                         <span>{profile.username}</span>
-                                        {profile.admin ? <img src="/star.svg" alt="admin" className='admin-star' /> :<span src="" alt="" className='admin-star'/>}
+                                        {profile.privilege>0 ? <img src="/star.svg" alt="admin" className='admin-star' /> :<span src="" alt="" className='admin-star'/>}
                                     </div>
                                 )
                             })}
@@ -158,14 +168,22 @@ function AdminPannel(){
                     {userSelected !== null &&
                         <div className='admin-users-selected'>
                             <p>Utilisateur sélectionné :</p>
-                            <p className="admin-user-selected">{userSelected.username} {userSelected.admin ? <span className="admin-user-carac">(admin)</span> : <span className="normal-user-carac">(user)</span>}</p>
+                            <p className="admin-user-selected">{userSelected.username}
+                                {userSelected.privilege===2 ?<span className="admin-user-carac"> (superadmin)</span>
+                                : userSelected.privilege===1 ? <span className="admin-user-carac"> (admin)</span>
+                                : <span className="normal-user-carac"> (user)</span>
+                                }
+                            </p>
+                            { (userSelected.privilege===0 || (userSelected.privilege===1 && session.privilege===2)) &&
                             <div className="admin-user-buttons">
                                 <button className='admin-users-delete' onClick={() => deleteUser(userSelected.idUser)}>Supprimer le compte</button>
-                                {userSelected.admin ?
-                                    <button className='admin-users-setuser' onClick={() => changeStatus(userSelected)}>Rétrograder user</button>
-                                    : <button className='admin-users-setadmin' onClick={() => changeStatus(userSelected)}>Rendre admin</button>
+                                {session.privilege===2 &&
+                                    userSelected.privilege>0 ?
+                                    <button className='admin-users-setuser' onClick={() => changePrivilege(userSelected,0)}>Rétrograder</button>
+                                    : <button className='admin-users-setadmin' onClick={() => changePrivilege(userSelected,1)}>Rendre admin</button>
                                 }
                             </div>
+                            }
                         </div>
                     }
                 </div>

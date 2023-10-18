@@ -36,6 +36,23 @@ router.post("/create", async(req, res) => {
     return res.status(200).json(response)
 })
 
+//update privilege
+router.post("/update/privilege/:username", async (req, res) => {
+    const {username} = req.params
+    const {privilege} = req.body
+
+    const response = await prisma.users.update({
+        where:{
+            username
+        },
+        data:{
+            privilege
+        }
+    })
+
+    return res.status(200).json(response)
+})
+
 router.post("/update/:old_username", async (req, res) => {
 
     const {old_username} = req.params
@@ -59,6 +76,7 @@ router.post("/update/:old_username", async (req, res) => {
 
 
 })
+
 
 router.post("delete/:username", async (req, res) => {
     /*
@@ -129,6 +147,17 @@ router.get("/:username", async (req, res) => {
 
 })
 
+router.get("/data/all", async (req, res) => {
+    // limit the number of users to 100
+    const response = await prisma.users.findMany({
+        orderBy: {
+            username: "asc"
+        },
+        take: 100
+    })
+    return res.status(200).json(response);
+});
+
 router.get("/search/:username", async (req, res) => {
 
     const {username} = req.params
@@ -144,6 +173,8 @@ router.get("/search/:username", async (req, res) => {
     return res.status(200).json(response)
 
 })
+
+
 
 
 module.exports = router

@@ -1,0 +1,22 @@
+
+.desktop-error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background: #264653;
+    font-family: K2D, sans-serif;
+    color: white;
+}
+
+.desktop-error-content h1{
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.desktop-error-content p{
+    text-align: center;
+    font-size: 1.5rem;
+}
+

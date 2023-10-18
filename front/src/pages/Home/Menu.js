@@ -23,8 +23,14 @@ function Menu() {
                 {/* if is admin and logged */}
                 {admin &&
                     <a href='/admin'><li>Panneau Admin</li></a>
+
+                }
+                {
+                    session.privilege === 1 ? <p>Admin</p> :
+                        session.privilege === 2 && <p>Super Admin</p>
                 }
             </ul>
+
         </div>
     )
 }

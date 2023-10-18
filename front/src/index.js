@@ -16,6 +16,7 @@ import Account from "./pages/Account/Account.js";
 import Rules from "./pages/Rules/Rules.js";
 import Join from './pages/Join/Join.js';
 import AdminPannel from "./pages/AdminPannel/AdminPannel.js";
+import DesktopError from "./pages/DesktopError/DesktopError.js";
 
 
 const router = createBrowserRouter([
@@ -52,7 +53,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
+        {window.innerWidth > 600 ? <DesktopError /> :
         <RouterProvider router={router} />
+        }
     </React.StrictMode>
 );
 
