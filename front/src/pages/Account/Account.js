@@ -35,6 +35,7 @@ function Account() {
 
     const onSubmitLogin = async (data) => {
         const {username, password} = data
+        username.toLowerCase()
         console.log(`${process.env.REACT_APP_API}/users/${username}`)
         const user = await axios.get(`${process.env.REACT_APP_API}/users/${username}`)
         if(user.data){
@@ -47,6 +48,7 @@ function Account() {
 
     const onSubmitRegister = async (data) => {
         const {username, firstName, lastName, password} = data
+        username.toLowerCase()
         const new_password = bcrypt.hashSync(password, salt);
         axios.post(`${process.env.REACT_APP_API}/users/create`, {
             username,
@@ -87,8 +89,6 @@ function Account() {
 
                         <input type="submit" value="Appliquer" />
                         <p onClick={deconnexion} className='deconnexion'>Se déconnecter</p>
-                        {/* when click on delete account, console.log("delete account") */}
-                        {/* <p onClick={() => console.log("delete account")} className='delete_account'>Supprimer mon compte</p> */}
                     </form>
                 </div>
             :
@@ -113,7 +113,7 @@ function Account() {
                         <input type="text" {...register("lastName")} placeholder="Nom" />
                         <input type="text" {...register("firstName")} placeholder="Prénom" />
                         <input type="password" {...register("password")} placeholder="Mot de passe" />
-                        <input type="submit" value="Se connecter" />
+                        <input type="submit" value="S'inscrire" />
                         <p>Déja inscrit ?</p>
                         <p onClick={() => setLogin(true)}className='change_type'>Connectez vous</p>
                     </form>

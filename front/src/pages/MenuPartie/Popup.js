@@ -18,7 +18,8 @@ function Popup({setPopupDiplayed, playersList, partie}){
     /* if the user clicks outside the popup, the popup is closed */
     const handleClickOutside = (e) => {
         if (e.target.className === 'game-popup') {
-            setPopupDiplayed(false)
+            setPopupDiplayed(false);
+            document.querySelector(".backarrow").style.display = "block";
         }
     }
 
@@ -42,7 +43,8 @@ function Popup({setPopupDiplayed, playersList, partie}){
         if(!partie){
             const res = await axios.post(`${process.env.REACT_APP_API}/parties/create`, {
                 name: gameName,
-                banner: 0
+                banner: 0,
+                ownerId: user.idUser
             })
             for(let i=0; i<players.length; i++){
                 const obj = {
@@ -93,9 +95,6 @@ function Popup({setPopupDiplayed, playersList, partie}){
     return (
         <div className='game-popup' onClick={handleClickOutside}>
             <div className='game-popup-content'>
-                <div className='game-popup-banner'>
-                    <img src={`/bannerPictures/gens_heureux_qui_jouent.png`} alt='banner'/>
-                </div>
                 <form className='game-popup-form' onSubmit={handleSubmit(onSubmit)}>
                     <div className='game-popup-form-title'>{partie ? "Modifier la partie" : "Créer une partie"}</div>
                     <div className='game-popup-form-input'>
@@ -107,7 +106,7 @@ function Popup({setPopupDiplayed, playersList, partie}){
                             <div className='players'>
                                 {players && players.map((player, index) => (
                                     <div className='add_player_card' key={index}>
-                                        {player.idUser !== user.idUser && <img src="/delete.png" class="delete" alt="Delete" onClick={() => deleteElement(index)} />}
+                                        {player.idUser !== user.idUser && <img src="/close.svg" className="delete" alt="Delete" onClick={() => deleteElement(index)} />}
                                         <img className="pp" src={`/profilePictures/pp${player.avatar}.png`} alt="ajouter"/>
                                         <span>{player.username}</span>
                                     </div>
@@ -118,11 +117,14 @@ function Popup({setPopupDiplayed, playersList, partie}){
                                 </div>
                             </div>
                         </div>
-                        {partie && <p onClick={createLink} className="invite_link">Copier le lien d'invitation (valable 10 minutes)</p>}
+                        {partie && <p onClick={createLink} className="invite_link">Copier le lien d'invitation<br/>(valable 10 minutes)</p>}
                     </div>
                     <div className='button-area'>
                         <button>{partie ? "Enregistrer" : "Valider"}</button>
-                        <span onClick={()=>setPopupDiplayed(false)}>Annuler</span>
+                        <span onClick={()=>{
+                            setPopupDiplayed(false);
+                            document.querySelector(".backarrow").style.display = "block"
+                        }}>Annuler</span>
                     </div>
                 </form>
             </div>

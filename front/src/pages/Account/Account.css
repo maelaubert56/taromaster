@@ -94,10 +94,9 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
-    padding:0 30px;
+    padding:30px;
     overflow-x: scroll;
 }
-
 
 .pp_list::-webkit-scrollbar{
     display: none;

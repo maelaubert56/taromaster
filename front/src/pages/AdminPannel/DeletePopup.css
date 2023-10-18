@@ -1,0 +1,100 @@
+/*
+<div className="delete-popup">
+    <div className="delete-popup-content">
+        <p>Êtes-vous sûr de vouloir supprimer {user.username} ?</p>
+        <div className="delete-popup-buttons">
+            <button onClick={() => deleteUser(user.idUser)}>Oui</button>
+            <button onClick={() => props.closePopup()}>Non</button>
+        </div>
+    </div>
+</div>
+*/
+
+.delete-popup {
+
+    animation: fadeOn 0.5s ease-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-popup-content {
+    color:#264653;
+    background: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 20px;
+    padding: 20px;
+
+
+    border-radius: 20px;
+    padding-top: 20px;
+    gap:20px;
+
+    animation: slideFromBottom 0.5s ease-out, fadeOn 1s ease-out;
+}
+
+
+@keyframes slideFromBottom{
+    /* little fade to UP */
+    from{
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.delete-popup-content p {
+    color:#264653;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-popup-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.delete-popup-buttons button {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background: #F4A261;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-popup-buttons button:last-child {
+    background: #a6a6a6;
+}
+
+.delete-popup-buttons button:active {
+    transform: scale(0.9);
+    transition: 0.1s;
+}
+

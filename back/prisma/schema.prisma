@@ -19,8 +19,10 @@ model Users {
     firstName String
     lastName String
     avatar Int
+    privilege Int @default(0) // 0 = user, 1 = admin, 2 = super admin
 
     playerInGames PlayerInGame[]
+    parties Parties[]
 
 }
 
@@ -30,8 +32,11 @@ model Parties {
     createdAt DateTime @default(now())
     banner Int
     nbDonnes Int @default(0)
+    ownerId Int
 
     playerInGames PlayerInGame[]
+
+    owner Users @relation(fields: [ownerId], references: [idUser], onDelete: Cascade)
 
 }
 

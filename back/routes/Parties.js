@@ -9,12 +9,13 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.json());
 
 router.post("/create", async (req, res) => {
-    const {name, banner} = req.body
+    const {name, banner, ownerId} = req.body
 
     const response = await prisma.parties.create({
         data:{
             name,
-            banner
+            banner,
+            ownerId : parseInt(ownerId)
         }
     })
 

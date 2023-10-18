@@ -83,7 +83,7 @@ router.delete("/:id_partie/:id_player", async (req, res) => {
 
 router.get("/:id_partie/:id_player", async (req, res) => {
     const {id_partie, id_player} = req.params
-
+    console.log("vzeevs")
     const response = await prisma.playerInGame.findUnique({
         where:{
             idJoueur_idPartie: {
