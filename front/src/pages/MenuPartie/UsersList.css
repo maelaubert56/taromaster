@@ -13,7 +13,7 @@
 }
 
 .users-list-content{
-    /* scroll if content is too big */
+    overflow-x: clip;
     overflow-y: scroll;
     animation: slideFromBottom 0.5s ease-out, fadeOn 1s ease-out;
     width: 80%;
