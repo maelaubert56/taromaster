@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import axios from "axios";
 import { createRoot } from "react-dom/client";
 import {
     createBrowserRouter,
@@ -59,7 +60,24 @@ root.render(
     </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
+const createSession = (user) => {
+    localStorage.setItem("session", JSON.stringify(user))
+}
+
+if(localStorage.getItem("session")){
+    let session = JSON.parse(localStorage.getItem("session"))
+    const user = await axios.get(`${process.env.REACT_APP_API}/users/${session.username}`)
+    if(user.data && user.data.idUser === session.idUser
+            && user.data.username === session.username
+            && user.data.firstName === session.firstName
+            && user.data.lastName === session.lastName
+            && user.data.avatar === session.avatar
+            && user.data.password === session.password){
+            createSession(user.data)
+        }else{
+        localStorage.removeItem("session")
+        window.location.href='/'
+    }
+}
 reportWebVitals();

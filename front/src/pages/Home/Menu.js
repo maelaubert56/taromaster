@@ -8,7 +8,7 @@ function Menu() {
 
     useEffect(() => {
         if(session)axios.get(`${process.env.REACT_APP_API}/users/${session.username}`).then(res => {
-            if(res.data.privilege>0) {
+            if(res.data && res.data.privilege>0) {
                 setSession(res.data)
                 setAdmin(true)
             }
@@ -26,8 +26,8 @@ function Menu() {
 
                 }
                 {
-                    session.privilege === 1 ? <p>Admin</p> :
-                        session.privilege === 2 && <p>Super Admin</p>
+                    session && session.privilege === 1 ? <p>Admin</p> :
+                        session && session.privilege === 2 && <p>Super Admin</p>
                 }
             </ul>
 
