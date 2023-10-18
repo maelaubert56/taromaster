@@ -24,7 +24,7 @@ services:
       - ./back:/home/ubuntu/taromaster/
     ports:
       - "3333:3333"
-    command: bash -c "npm run prisma db push && node app"
+    command: bash -c "npm run prisma db push && npm run prisma db seed && node app"
     depends_on:
       - db
     networks:
