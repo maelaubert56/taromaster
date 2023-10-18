@@ -56,83 +56,33 @@ function AdminPannel(){
 
     /* get all the users data*/
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API}/users/data/all`).then(res => {
-            if(res.data){
-                setResult(res.data)
-            }else{
-                setResult([])
-            }
-        })
+
     }, [result])
 
-    /* TEMPORAIRE */
-    const resultTemp = [
-        {
-            idUser: 1,
-            username: 'Jean',
-            firstName: 'Jean',
-            lastName: 'Jean',
-            avatar: 1,
-            privilege: 1
-        },
-        {
-            idUser: 2,
-            username: 'Pierre',
-            firstName: 'Pierre',
-            lastName: 'Pierre',
-            avatar: 2,
-            privilege: 2
-        },
-        {
-            idUser: 3,
-            username: 'Paul',
-            firstName: 'Paul',
-            lastName: 'Paul',
-            avatar: 3,
-            privilege: 0
-        },
-        {
-            idUser: 4,
-            username: 'Jacques',
-            firstName: 'Jacques',
-            lastName: 'Jacques',
-            avatar: 4,
-            privilege: 0
-        },
-        {
-            idUser: 5,
-            username: 'Jeanne',
-            firstName: 'Jeanne',
-            lastName: 'Jeanne',
-            avatar: 5,
-            privilege: 0
-        },
-        {
-            idUser: 6,
-            username: 'Marie',
-            firstName: 'Marie',
-            lastName: 'Marie',
-            avatar: 6,
-            privilege: 1
-        },
-        {
-            idUser: 7,
-            username: 'Julie',
-            firstName: 'Julie',
-            lastName: 'Julie',
-            avatar: 7,
-            privilege: 1
-        },
-        {
-            idUser: 8,
-            username: 'Julien',
-            firstName: 'Julien',
-            lastName: 'Julien',
-            avatar: 8,
-            privilege: 0
+    useEffect(() => {
+        /* check if search is empty */
+        if(!(search === null || search === '')) {
+            /* tolowercase and trim the search */
+            search = search.toLowerCase().trim()
+            axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
+                if(res.data) {
+                    setResult(res.data)
+                }
+                else{
+                    setResult([])
+                }
+            })
+        }else{
+            /* get all the users */
+            axios.get(`${process.env.REACT_APP_API}/users/data/all`).then(res => {
+                if(res.data){
+                    setResult(res.data)
+                }else{
+                    setResult([])
+                }
+            })
         }
-    ]
-
+    }, [search])
 
 
     return(
@@ -168,7 +118,9 @@ function AdminPannel(){
                                     <div className='user-admin' key={index} onClick={() => setUserSelected(profile)}>
                                         <img src={`/profilePictures/pp${profile.avatar}.png`} alt="profile" />
                                         <span>{profile.username}</span>
-                                        {profile.privilege>0 ? <img src="/star.svg" alt="admin" className='admin-star' /> :<span src="" alt="" className='admin-star'/>}
+                                        {profile.privilege===1 ? <img src="/star_yellow.svg" alt="admin" className='admin-star' /> :
+                                            profile.privilege===2 ? <img src="/star_purple.svg" alt="superadmin" className='admin-star' /> :
+                                            <span src="" alt="" className='admin-star'/>}
                                     </div>
                                 )
                             })}
@@ -178,7 +130,7 @@ function AdminPannel(){
                         <div className='admin-users-selected'>
                             <p>Utilisateur sélectionné :</p>
                             <p className="admin-user-selected">{userSelected.username}
-                                {userSelected.privilege===2 ?<span className="admin-user-carac"> (superadmin)</span>
+                                {userSelected.privilege===2 ?<span className="admin-user-carac" style={{color:"#aa68e8"}}> (superadmin)</span>
                                 : userSelected.privilege===1 ? <span className="admin-user-carac"> (admin)</span>
                                 : <span className="normal-user-carac"> (user)</span>
                                 }

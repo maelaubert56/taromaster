@@ -12,16 +12,24 @@ function UsersList({setUsersListDiplayed, setPlayers, players, old}){
         if(!(search === null || search === '')) {
             /* tolowercase and trim the search */
             search = search.toLowerCase().trim()
+            axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
+                if(res.data) {
+                    setResult(res.data)
+                }
+                else{
+                    setResult([])
+                }
+            })
+        }else{
+            /* get all the users */
+            axios.get(`${process.env.REACT_APP_API}/users/data/all`).then(res => {
+                if(res.data){
+                    setResult(res.data)
+                }else{
+                    setResult([])
+                }
+            })
         }
-
-        axios.get(`${process.env.REACT_APP_API}/users/search/${search}`).then(res => {
-            if(res.data) {
-                setResult(res.data)
-            }
-            else{
-                setResult([])
-            }
-        })
     }, [search])
 
     /* if the user clicks outside the popup, the popup is closed */

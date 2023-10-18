@@ -2,6 +2,7 @@
     margin-top: 80px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -9,4 +10,12 @@
 .home_logo img{
     width:70%;
     max-width: 300px;
+}
+
+.home_logo p{
+    font-family: K2D, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #ffffff;
+    margin:0;
 }

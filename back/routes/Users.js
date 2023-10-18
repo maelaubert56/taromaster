@@ -151,7 +151,7 @@ router.get("/data/all", async (req, res) => {
         orderBy: {
             username: "asc"
         },
-        take: 100
+        take: 50
     })
     return res.status(200).json(response);
 });
@@ -161,11 +161,15 @@ router.get("/search/:username", async (req, res) => {
     const {username} = req.params
 
     const response = await prisma.users.findMany({
+        orderBy: {
+            username: "asc"
+        },
         where:{
             username: {
                 contains: username
             }
-        }
+        },
+        take: 50
     })
 
     return res.status(200).json(response)
