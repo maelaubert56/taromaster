@@ -20,14 +20,12 @@ const userExist = async (username) => {
 }
 
 router.post("/create", async(req, res) => {
-    const { firstName, lastName, username, password, avatar } = req.body
+    const {username, password, avatar } = req.body
     if(await userExist(username)) return res.status(400).json("Ce nom d'utilisateur est déjà utilisé")
 
     const response = await prisma.users.create({
         data:{
             username,
-            firstName,
-            lastName,
             avatar,
             password
         }
@@ -56,7 +54,7 @@ router.post("/update/privilege/:idUser", async (req, res) => {
 router.post("/update/:old_username", async (req, res) => {
 
     const {old_username} = req.params
-    const {firstName, lastName, avatar = 0} = req.body
+    const {avatar = 0} = req.body
 
 
     // if(await userExist(username)) return res.status(400).json("Ce nom d'utilisateur existe déjà")
@@ -66,8 +64,6 @@ router.post("/update/:old_username", async (req, res) => {
             username: old_username
         },
         data:{
-            firstName,
-            lastName,
             avatar
         }
     })
@@ -97,18 +93,6 @@ router.post("/delete/:idToDelete", async (req, res) => {
         })
         return res.status(200).json(response)
     }
-
-    // TODO: temporaire en attendant de gérer les admins dans la bdd
-    /*
-    const {username} = req.params
-    // check if the user to delete is not the one who is connected
-    const response = await prisma.users.delete({
-        where: {
-            username
-        }
-    });
-    return res.status(200).json(response)
-    */
 })
 
 

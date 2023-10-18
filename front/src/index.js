@@ -70,8 +70,6 @@ if(localStorage.getItem("session")){
     const user = await axios.get(`${process.env.REACT_APP_API}/users/${session.username}`)
     if(user.data && user.data.idUser === session.idUser
             && user.data.username === session.username
-            && user.data.firstName === session.firstName
-            && user.data.lastName === session.lastName
             && user.data.avatar === session.avatar
             && user.data.password === session.password){
             createSession(user.data)

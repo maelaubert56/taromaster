@@ -82,7 +82,7 @@ function AdminPannel(){
                 }
             })
         }
-    }, [search])
+    }, [search, result])
 
 
     return(
