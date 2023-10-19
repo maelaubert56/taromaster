@@ -9,7 +9,20 @@ const donnesRoutes = require('./routes/Donnes')
 const playerInGamesRoutes = require("./routes/PlayerInGame")
 const adminRoutes = require("./routes/Admin")
 
-app.use(cors({ origin: "https://taromaster.matteobonnet.fr", optionsSuccessStatus: 200 }));
+const corsOpts = {
+  origin: 'https://taromaster.matteobonnet.fr',
+
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 app.use(express.json({limit: '50mb'}));
 
 app.use('/users', userRoutes)
