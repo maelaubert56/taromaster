@@ -30,7 +30,9 @@
 }
 
 
-
+.errorAccount{
+    font-size: 20px !important;
+}
 
 .account_page form{
     width: 100%;
@@ -66,6 +68,12 @@
 .account_page input[type="submit"]{
     margin-top: 20px;
     text-align: center;
+    transition: 0.2s;
+}
+
+.account_page input[type="submit"]:active{
+    transform: scale(0.95);
+    transition: 0.2s;
 }
 
 .account_page p{
@@ -73,7 +81,18 @@
     font-size: 22px;
     color:white;
     margin:0;
-    padding:0;
+    text-align: center;
+    padding:0 20px;
+}
+
+.account_page h2{
+    font-family: K2D, serif;
+    font-size: 40px;
+    font-weight: 500;
+    color:#fff;
+    margin:0;
+    text-align: center;
+    padding:0 20px;
 }
 
 .username_account{
@@ -87,14 +106,15 @@
 
 .account_page .pp_list{
     position:relative;
-    width: 90%;
+    width: 100%;
     height: 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    margin-bottom: 20px;
-    padding:30px;
+    margin: 20px 0;
+    padding:0 30px;
+    box-sizing: border-box;
     overflow-x: scroll;
 }
 
@@ -110,18 +130,6 @@
     border-radius: 50%;
 }
 
-.profilePic{
-    display: block;
-    margin: auto;
-    width: 80px;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 0;
-}
-
-.username_form{
-    margin-bottom: 20px !important;
-}
 
 .account_page .ppSelected {
     animation: spin 4s linear infinite;
@@ -132,17 +140,6 @@
     border-radius: 50%;
 }
 
-.arrow_pp_list{
-    display: none;
-    text-align: center;
-    width:50px;
-    height: 50px;
-    background: #264653;
-    border-radius: 50%;
-    padding:5px;
-    font-size: 40px;
-
-    color: #fff;
-    position:absolute;
-    right:20px;
+.username_form{
+    margin-bottom: 20px !important;
 }
